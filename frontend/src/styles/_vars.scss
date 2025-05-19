@@ -1,0 +1,35 @@
+// Цвета
+$primary-color-hov: #c7a322;
+$primary-color: #212121;
+$secondary-color: #f2f2f2;
+$accent-color: #8bc34a;
+$error-color: #ff4e4e;
+$text-color: #212121;
+$background-color: #ffffff;
+
+// Градиенты
+$primary-gradient: linear-gradient(145deg, #6ba5ff, #3e72cc);
+
+// Неоморфизм — тени
+$shadow-inset: inset 5px 5px 10px #bec5d1, inset -5px -5px 10px #ffffff;
+$shadow-outset: 5px 5px 15px #bec5d1, -5px -5px 15px #ffffff;
+
+// Радиусы
+$border-radius: 12px;
+
+// Переходы
+$transition: all 0.3s ease;
+
+// Размеры
+
+$input-height: 40px;
+$button-height: 45px;
+$container-width: 400px;
+
+// Дополните существующие переменные:
+$button-primary: #ffcd17;
+$button-hover: #7b3aff;
+$button-active: #6a29ee;
+$button-text: #212121;
+$button-radius: 8px;
+$button-shadow: 0 2px 6px rgba(138, 79, 255, 0.3);
