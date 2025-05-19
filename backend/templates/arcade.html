@@ -1,0 +1,37 @@
+
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/css/arcade.css">
+{% endblock head %}
+
+{% block content %}
+<div class="content" style="height: 700px;">
+	<h1>Испытания</h1>
+
+	{% for arcade in info_arcade %}
+	<div class="event {{arcade.img}}" onclick="showConfirmationModal('{{arcade.url}}')">
+		<div class="event-title">{{ arcade.title_name }}</div>
+		<div class="event-timer">{{ arcade.time_end_now }}</div>
+		<div class="event-info">
+			{% if info_dice_roll != [] and arcade.title_name == 'Бросок кубика' %}
+			<div class="wins-losses">Победы: {{ info_dice_roll.win }} <a style="color: white">/</a> <a style="color: red">Поражения: {{ info_dice_roll.lose }}</a></div>
+			{% elif info_achieving_the_goal != [] and arcade.title_name == 'Бросок Судьбы' %}
+			<div class="wins-losses">Победы: {{ info_achieving_the_goal.win }} <a style="color: white">/</a> <a style="color: red">Поражения: {{ info_achieving_the_goal.lose }}</a></div>
+			{% else %}
+			<div class="wins-losses"><a style="color: white">Цена за вход: {{ arcade.price }}<img src="../static/images/orange_ticket.png"></a></div>
+			{% endif %}
+			<div class="tickets">Билеты: <img src="../static/images/orange_ticket.png"> {{ profile.ticket }}</div>
+		</div>
+	</div>
+	{% endfor %}
+</div>
+
+<script>
+	function showConfirmationModal(url) {
+		window.location.href = url;
+	}
+</script>
+
+
+{% endblock content %}

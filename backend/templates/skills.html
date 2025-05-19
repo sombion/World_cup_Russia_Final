@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="title">Улучшения</div>
+
+<div class="skills-container">
+	{% for item in item_skill %}
+		<div class="skill">
+			<h3>{{ item.ru_skill_name }}</h3>
+			{% if not item.skill_max %}
+				<p>Уровень: {{ item.skill_lvl }}</p>
+			{% else %}
+				<p><b>{{ item.skill_lvl }}</b></p>
+			{% endif %}
+			{% if item.skill_name in ['afk_dice', 'dice_per_hour'] %}
+				<p>Значение: {{ item.skill_value }}шт</p>
+			{% else %}
+				<p>Значение: +{{ item.skill_value }}%</p>
+			{% endif %}
+				
+			{% if not item.skill_max %}
+				<p>Рубины: {{ item.ruby_price }}</p>
+			{% endif %}
+				
+			{% if not item.skill_max  %}
+				<button class="buy-button" id="{{ item.skill_name }}">Купить</button>
+			{% else %}
+				<button disabled class="buy-max-button">Купить</button>			
+			{% endif %}
+		</div>
+	{% endfor %}
+</div>
+
+<div class="reward-text hidden" id="reward-text"></div>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		const buttons = document.querySelectorAll('.buy-button');
+		
+		buttons.forEach(button => {
+			button.addEventListener('click', function() {
+				const skillId = this.id;
+				console.log(skillId);
+				console.log("{{ profile.tg_id }}");
+				fetch('/api/info-shop/buy-skill', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({ skill_name: skillId, tg_id: "{{ profile.tg_id }}" })
+				})
+				.then(response => response.json())
+				.then(data => {
+					console.log('Success:', data);
+					if (data.buy === true){
+						window.location.reload();
+					} else {
+						// Обработка ошибок
+						result_text(data.error);
+					}
+				})
+				.catch((error) => {
+					console.error('Error:', error);
+				});
+			});
+		});
+	});
+
+	function result_text(text) {
+		const rewardText = document.getElementById('reward-text');
+		rewardText.textContent = text
+		rewardText.classList.remove('hidden');
+		rewardText.classList.add('show');
+
+		// Скрыть текст через 3 секунды (опционально)
+		setTimeout(function() {
+			rewardText.classList.remove('show');
+			rewardText.classList.add('hidden');
+		}, 3000);
+	};
+</script>
+
+{% endblock content %}

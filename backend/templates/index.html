@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<div class="level" id="profile-lvl">{{profile.lvl}} уровень</div>
+        <div class="progress-bar-container">
+            <div class="progress-bar">
+                <div class="progress"></div>
+                <div class="progress-numbers">
+                    <span class="current-value">0</span>/<span class="target-value">100</span>
+                </div>
+            </div>
+        </div>
+	<script>
+        document.addEventListener('DOMContentLoaded', function() {
+			const currentValueElement = document.querySelector('.current-value');
+			const targetValueElement = document.querySelector('.target-value');
+			const progressBarElement = document.querySelector('.progress');
+			
+			// Установите нужное значение
+			const targetValue = {{ next.need_to }};
+			const currentValue = {{ profile.xp }}; // Текущее значение
+			
+			// Обновите значения в HTML
+			targetValueElement.textContent = targetValue;
+			currentValueElement.textContent = currentValue;
+			
+			// Рассчитайте ширину прогресс-бара в процентах
+			const progressPercentage = (currentValue / targetValue) * 100;
+			
+			// Установите ширину прогресс-бара
+			progressBarElement.style.width = progressPercentage + '%';
+		});		
+    </script>
+	
+	<div class="content">
+		<div class="cube-container">
+			<img src="../static/images/cube/cube-1-static.png" alt="Кубик" class="cube" id="cube-img">
+		</div>
+		<button class="action-button" id="cube-btn">Бросить</button>
+		<div class="reward-text hidden" id="reward-text">+0 монет, +0 рубин</div>
+	</div>
+
+	<script>
+		let isCubeClicked = false;
+
+		async function GetDate() {
+			const response = await fetch('/api/cube-game/game');
+			const data = await response.json();
+			return data
+		}
+		  
+		document.getElementById('cube-img').addEventListener('click', handleCubeClick);
+		document.getElementById('cube-btn').addEventListener('click', handleCubeClick);
+
+		function result_text(text) {
+            const rewardText = document.getElementById('reward-text');
+			rewardText.textContent = text
+            rewardText.classList.remove('hidden');
+            rewardText.classList.add('show');
+
+            // Скрыть текст через 3 секунды (опционально)
+            setTimeout(function() {
+                rewardText.classList.remove('show');
+                rewardText.classList.add('hidden');
+            }, 3000);
+        };
+		
+		function handleCubeClick() {
+			if (!isCubeClicked) {
+				isCubeClicked = true;
+				const cubeElement = document.getElementById('cube-img');
+				
+				GetDate().then(data => {
+					console.log(data)
+					if (data.status == 404) {
+						result_text(data.error);
+						isCubeClicked = false;
+						return -1;
+					}
+					const staticSrc = `../static/images/cube/cube-${data.random_money.toString()}-static.png`;
+					const gifSrc = `../static/images/cube/cube-${data.random_money.toString()}.gif`;
+			
+					cubeElement.src = gifSrc;
+
+					setTimeout(() => {
+						cubeElement.src = staticSrc;
+
+						document.getElementById('profile-cube').textContent = data.cube;
+						document.getElementById('profile-ruby').textContent = data.ruby;
+						document.getElementById('profile-money').textContent = data.money;
+						document.getElementById('profile-lvl').textContent = data.lvl_now + " уровень";
+
+						const currentValueElement = document.querySelector('.current-value');
+						const targetValueElement = document.querySelector('.target-value');
+						const progressBarElement = document.querySelector('.progress');
+						
+						// Установите нужное значение
+						const targetValue = data.xp_need_to;
+						const currentValue = data.xp_now; // Текущее значение
+						
+						// Обновите значения в HTML
+						targetValueElement.textContent = targetValue;
+						currentValueElement.textContent = currentValue;
+						
+						// Рассчитайте ширину прогресс-бара в процентах
+						const progressPercentage = (currentValue / targetValue) * 100;
+						
+						// Установите ширину прогресс-бара
+						progressBarElement.style.width = progressPercentage + '%';
+						
+						isCubeClicked = false;
+
+						function declension(number, singular, plural, genitivePlural) {
+							if (number % 10 === 1 && number % 100 !== 11) {
+								return singular;
+							} else if (
+								(number % 10 >= 2 && number % 10 <= 4) &&
+								(number % 100 < 10 || number % 100 >= 20)
+							) {
+								return plural;
+							} else {
+								return genitivePlural;
+							}
+						}
+						
+						const moneyText = declension(data.info_money, 'монета', 'монеты', 'монет');
+						const rubyText = declension(data.random_ruby, 'рубина', 'рубина', 'рубинов');
+						
+						const text = `+${data.info_money} ${moneyText}, +${data.random_ruby} ${rubyText}`;
+						result_text(text);
+					}, 2800);
+				});
+			}
+		}
+	</script>
+
+{% if info_cube != None %}
+
+<div id="confirmationModal" style="display:none;">
+    <div class="modal-content">
+        <p id="text-1">Пока вас небыло</p>
+		<p id="text-2">Вы получили: {{ info_cube.give_cube }} <img src="../static/images/cube.png" style="height: 20px; vertical-align: middle;"></p>
+		<div class="btn">
+			<button onclick="cancelAction()">Подтвердить</button>
+		</div>
+    </div>
+</div>
+
+<script>
+	function showConfirmationModal() {
+		const modal = document.getElementById('confirmationModal');
+		modal.style.display = 'flex';
+	
+		// Добавляем обработчик клика вне модального окна
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				cancelAction();
+			}
+		}
+	}
+
+	function cancelAction() {
+		const modal = document.getElementById('confirmationModal');
+		modal.style.display = 'none';
+		document.getElementById('profile-cube').textContent = {{ profile.cube }} + {{ info_cube.give_cube }} ;
+		// Убираем обработчик клика вне модального окна
+		window.onclick = null;
+	}
+
+	showConfirmationModal();
+</script>
+
+{% endif %}
+
+{% endblock content %}

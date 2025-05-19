@@ -1,0 +1,445 @@
+body {
+	display: flex;
+	justify-content: center;
+	align-items: stretch;
+	height: 100vh;
+	margin: 0;
+	background-color: #f0f0f0;
+	font-family: 'Arial', sans-serif;
+}
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 100%;
+	height: 100%;
+	background-color: #f0f0f0;
+}
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: sticky;
+	top: 0;
+	padding: 10px;
+	border-bottom: 1px solid #ccc;
+	background-color: #f8f8f8;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.level {
+	padding: 10px;
+	font-size: 24px;
+	text-align: center;
+}
+.user-name {
+	font-size: 24px;
+}
+.stats {
+	display: flex;
+	gap: 10px;
+}
+.stat {
+	display: flex;
+	align-items: center;
+	padding: 5px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	background-color: #fff;
+}
+.stat img {
+	width: 24px;
+	height: 24px;
+	margin-right: 5px;
+}
+
+.progress-bar-container {
+	padding: 10px;
+	text-align: center;
+}
+.progress-bar {
+	width: 100%;
+	background-color: #f3f3f3;
+	border-radius: 15px;
+	overflow: hidden;
+	position: relative;
+	height: 30px;
+	box-sizing: border-box;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+}
+
+.progress {
+	background-color: #4caf50;
+	height: 100%;
+	width: 0;
+	border-radius: 13px;
+	transition: width 0.5s ease;
+}
+.progress-numbers {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: #000;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+
+.content {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+	flex-grow: 1;
+	padding: 20px;
+	text-align: center;
+}
+.cube-container {
+	position: absolute;
+	bottom: 220px;
+	max-width: 300px;
+}
+.cube {
+	width: 100%;
+	cursor: pointer;
+}
+.action-button {
+	display: block;
+	width: 100%;
+	margin: 20px auto;
+	padding: 10px;
+	background-color: #4caf50;
+	color: white;
+	border: none;
+	border-radius: 10px;
+	font-size: 20px;
+	text-align: center;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+.action-button:hover {
+	background-color: #45a049;
+}
+.reward-text {
+	margin-top: 10px;
+	font-size: 14px;
+	color: #555;
+	opacity: 0;
+	transition: opacity 0.3s ease-in-out;
+}
+.reward-text.show {
+	opacity: 1;
+}
+.navigation {
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    height: 60px;
+	margin: 10px;
+    display: flex;
+    justify-content: space-between;
+	position: sticky;
+    top: 20px;
+    align-items: center;
+    background-color: #f8f8f8;
+    border-radius: 30px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+.nav-button {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 10px;
+}
+.nav-button img {
+	width: 32px;
+	height: 32px;
+	transition: transform 0.3s ease;
+}
+.nav-button:hover img {
+	transform: scale(1.2);
+}
+
+@media (max-width: 500px) {
+	.level, .user-name, .stats {
+		font-size: 20px;
+	}
+	.stat img {
+		width: 20px;
+		height: 20px;
+	}
+	.progress-numbers {
+		font-size: 14px;
+	}
+	.action-button {
+		width: 90%;
+		font-size: 18px;
+	}
+}
+
+
+.score-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.score-circle {
+    width: 20px;
+    height: 20px;
+    background-color: gray;
+    border-radius: 50%;
+}
+
+.strip-container {
+    position: relative;
+    width: 300px;
+    height: 20px;
+    background-color: #ccc;
+    border: 2px solid gray;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.green-zone {
+    position: absolute;
+    height: 100%;
+    background-color: #4caf50;
+}
+
+.running-bar {
+    position: absolute;
+    width: 2%;
+    height: 100%;
+    background-color: red;
+    animation: run 2s linear infinite;
+}
+
+@keyframes run {
+    0% {
+        left: 0%;
+    }
+    100% {
+        left: 98%;
+    }
+}
+
+.result {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Магазин */
+.shop-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+    padding: 20px;
+}
+.shop {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.shop h3 {
+    margin: 10px 0;
+    font-size: 18px;
+}
+.shop p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+/* Скилы */
+.skills-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    padding: 20px;
+}
+.skill {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.skill h3 {
+    margin: 10px 0;
+    font-size: 18px;
+}
+.skill p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+.buy-button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.buy-button:hover {
+    background-color: #45a049;
+}
+.title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: -15px;
+}
+
+.buy-max-button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 0.5; 
+    cursor: not-allowed; 
+}
+
+.reward-text {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    text-align: center;
+}
+.reward-text.show {
+    opacity: 1;
+}
+
+.block {
+    width: 80%;
+    margin: 10px 0;
+    padding: 20px;
+    border: 2px solid #000;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.block span {
+    display: block;
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: lightgrey;
+    display: inline-block;
+    text-align: center;
+    line-height: 50px;
+    font-size: 24px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.selected {
+    background-color: lightblue;
+}
+
+/* Статистика игры */
+
+.statistics-games {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns with equal width */
+    gap: 10px;
+    text-align: center;
+	margin-bottom: -40%;
+	padding: 10px;
+    padding-left: 2px;
+
+	background-color: #fff;
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.stat-w-l {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.stat-w-l-label {
+	font-weight: bold;
+	color: #555;
+}
+
+.stat-w-l-value {
+	font-size: 1.5em;
+	color: #000000;
+}
+
+
+/* Стили для модального окна */
+#confirmationModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.btn {
+    display: flex;
+    justify-content: center; /* Центрирование по горизонтали */
+    align-items: center;
+    gap: 100px;
+}
+
+
+
+.doors-container {
+    display: flex;
+    gap: 20px;
+}
+.door {
+    width: 100px;
+    height: 200px;
+    cursor: pointer;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#door1, #door2, #door3, #door4 {
+    background-image: url('closed-door.png');
+}
+.open {
+    background-image: url('open-door.png');
+}

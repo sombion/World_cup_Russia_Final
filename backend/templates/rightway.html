@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="doors-container">
+	<div class="door" id="door1"></div>
+	<div class="door" id="door2"></div>
+	<div class="door" id="door3"></div>
+	<div class="door" id="door4"></div>
+</div>
+
+<script>
+	function openDoor(doorNumber) {
+		const door = document.getElementById(`door${doorNumber}`);
+		door.classList.toggle('open');
+		console.log(`Дверь ${doorNumber} открыта`);
+	}
+
+	document.getElementById('door1').addEventListener('click', () => openDoor(1));
+	document.getElementById('door2').addEventListener('click', () => openDoor(2));
+	document.getElementById('door3').addEventListener('click', () => openDoor(3));
+	document.getElementById('door4').addEventListener('click', () => openDoor(4));
+</script>
+{% endblock content %}

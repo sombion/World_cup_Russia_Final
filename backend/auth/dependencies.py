@@ -35,12 +35,7 @@ async def get_current_user(token: str = Depends(get_token)):
     del user.hash_password
     return user
 
-async def get_current_federation_user(current_user: Users = Depends(get_current_user)):
-    if current_user.role == UserRole.FEDERATION:
-        return current_user
-    raise PermissionDeniedException
-
-async def get_current_regional_rep_user(current_user: Users = Depends(get_current_user)):
-    if current_user.role == UserRole.REGIONAL_REP:
-        return current_user
-    raise PermissionDeniedException
+async def get_admin_user(current_user: Users = Depends(get_current_user)):
+    if not current_user.is_admin:
+        raise PermissionDeniedException
+    return current_user

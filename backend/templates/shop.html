@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+	<h1 class="title">Магазин</h1>
+
+	<div class="shop-container">
+		{% for item in items_shop %}
+			<div class="shop">
+				<h3>{{ item.name_item_ru }}</h3>
+				<p>Кол-во: {{ item.count_by }}</p>
+				<p>Цена: {{ item.price }}</p>
+
+				{% if item.count_by > 0  %}
+					<button class="buy-button" id="{{ item.item_id }}">Купить</button>
+				{% else %}
+					<button disabled class="buy-max-button" id="{{ item.item_id }}"><b>Купить</b></button>			
+				{% endif %}
+				
+			</div>
+		{% endfor %}	
+	</div>
+	<div class="reward-text hidden" id="reward-text"></div>
+</div>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		const buttons = document.querySelectorAll('.buy-button');
+		
+		buttons.forEach(button => {
+			button.addEventListener('click', function() {
+				const id_item = this.id;
+
+				fetch('/api/shop/buy', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({ id_item: id_item, tg_id: "{{ profile.tg_id }}" })
+				})
+				.then(response => response.json())
+				.then(data => {
+					console.log('Success:', data);
+					if (data.status == 200){
+						window.location.reload();
+					} else {
+						result_text(data.info);
+						// Обработка ошибок
+					}
+				})
+				.catch((error) => {
+					console.error('Error:', error);
+				});
+			});
+		});
+	});
+
+
+	function result_text(text) {
+		const rewardText = document.getElementById('reward-text');
+		rewardText.textContent = text
+		rewardText.classList.remove('hidden');
+		rewardText.classList.add('show');
+
+		// Скрыть текст через 3 секунды (опционально)
+		setTimeout(function() {
+			rewardText.classList.remove('show');
+			rewardText.classList.add('hidden');
+		}, 3000);
+	};
+
+</script>
+
+{% endblock content %}

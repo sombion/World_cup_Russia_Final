@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="content">
+	<div class="score-container">
+		<div class="score-circle" id="score-circle-1"></div>
+		<div class="score-circle" id="score-circle-2"></div>
+		<div class="score-circle" id="score-circle-3"></div>
+	</div>
+	<div class="strip-container">
+		<div class="green-zone" id="green-zone"></div>
+		<div class="running-bar" id="running-bar"></div>
+	</div>
+	<button class="action-button" onclick="checkWin()">Проверить</button>
+	<div id="result" class="result"></div>
+</div>
+
+<script src="/static/js/script.js"></script>
+{% endblock content %}

@@ -1,0 +1,89 @@
+.event {
+    width: 90%;
+    max-width: 600px;
+    height: 300px; /* Замените на реальную высоту вашего изображения */
+    min-height: 150px;
+    margin: 20px 0;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-height: 170px;
+}
+
+.diceroll {
+    background-image: url('../images/diceroll.png');
+}
+
+.right-way {
+    background-image: url('../images/right-way.png');
+}
+
+.achieving-the-goal {
+    background-image: url('../images/achieving-the-goal.png');
+}
+
+.event-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffe712;
+    text-shadow: 
+    -1px -1px 0 #000,  
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000; /* Черная обводка */
+    text-align: center;
+}
+
+.event-timer {
+    font-size: 18px;
+    color: #ffeb3b;
+    margin-top: 10px;
+    text-shadow: 
+    -1px -1px 0 #000,  
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000; /* Черная обводка */
+    text-align: center;
+}
+
+.event-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 0 0 10px 10px;
+}
+
+.event-info .wins-losses,
+.event-info .tickets {
+    font-size: 16px;
+    text-shadow: 
+    -1px -1px 0 #000,  
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000; /* Черная обводка */
+}
+
+.event-info .wins-losses {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.event-info .tickets {
+    color: #ffeb3b;
+    font-weight: bold;
+}
+
+.event-info img {
+    height: 20px;
+    vertical-align: middle;
+}

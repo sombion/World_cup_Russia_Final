@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="clear">
+	<h3 class="title" style="margin-block-end: 1%">Бросок кубика</h3>
+	<div class="statistics-games">
+		
+		<div class="stat-w-l">
+			<span class="stat-w-l-label">Побед</span>
+			<span class="stat-w-l-value" id="win-count">{{info_dice_roll.win}}</span>
+		</div>
+		<div class="stat-w-l">
+			<span class="stat-w-l-label">Раунд</span>
+			<span class="stat-w-l-value" id="round-count">{{info_dice_roll.win + info_dice_roll.lose + 1}}</span>
+		</div>
+		<div class="stat-w-l">
+			<span class="stat-w-l-label">Поражений</span>
+			<span class="stat-w-l-value" id="loss-count">{{info_dice_roll.lose}}</span>
+		</div>
+	</div>
+	
+</div>
+<div class="content">
+	<div class="cube-container" style="bottom: 350px;">
+		<img src="../static/images/cube/cube-1-static.png" alt="Кубик" class="cube" id="cube-img">
+	</div>
+</div>
+
+<div id="help" style="display: flex; flex-direction: column; align-items: center;">
+	<div class="user-name text-info" id="text-info" style="text-align: center; padding: 15px">Выберите 3 числа</div>
+	<div id="circles-container">
+		<div class="circle" data-value="1">1</div>
+		<div class="circle" data-value="2">2</div>
+		<div class="circle" data-value="3">3</div>
+		<div class="circle" data-value="4">4</div>
+		<div class="circle" data-value="5">5</div>
+		<div class="circle" data-value="6">6</div>
+	</div>
+</div>
+
+<button class="action-button" id="cube-btn">Бросить</button>
+<div class="result" id="result">
+	<div style="text-align: center;">
+		<h2 id="info"></h2>
+		
+		<p id="resultDetail"></p>
+		<p id="win"></p>
+		<p id="lose"></p>
+		<p id="xp" class="award"></p>
+		<p id="money" class="award"></p>
+		<p id="ruby" class="award"></p>
+		<p id="cube" class="award"></p>
+	</div>
+</div>
+<script>
+	document.querySelectorAll('.circle').forEach(function(circle) {
+		circle.addEventListener('click', function() {
+			var selectedCircles = document.querySelectorAll('.circle.selected');
+			if (this.classList.contains('selected')) {
+				this.classList.toggle('selected');
+			} else if (selectedCircles.length < 3) {
+				this.classList.toggle('selected');
+			}
+		});
+	});
+
+	document.getElementById('cube-btn').addEventListener('click', function() {
+		var selectedCircles = document.querySelectorAll('.circle.selected');
+		var selectedValues = [];
+		selectedCircles.forEach(function(circle) {
+			selectedValues.push(circle.getAttribute('data-value'));
+		});
+		
+		console.log('Выделенные значения:', selectedValues);
+		handleCubeClick(selectedValues);
+		
+		selectedCircles.forEach(function(circle) {
+			circle.classList.remove('selected');
+		});
+	});
+
+	let isCubeClicked = false;
+
+	async function GetDate(lst) {
+		try {
+			const response = await fetch('/api/dice-roll/game', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({ 
+					"tg_id": '{{ profile.tg_id }}',  // Убедитесь, что '{{ profile.tg_id }}' заменено на актуальное значение
+					"lst": lst  
+				})
+			});
+			const data = await response.json();
+			console.log('Success:', data);
+			return data;
+		} catch (error) {
+			console.error('Error:', error);
+		}
+	}
+
+	function handleCubeClick(selectedValues) {
+		if (!isCubeClicked) {
+			isCubeClicked = true;
+			const cubeElement = document.getElementById('cube-img');
+			
+			GetDate(selectedValues).then(data => {
+				if (data && data.status === 404) {
+					isCubeClicked = false;
+					return;
+				}
+				const staticSrc = `../static/images/cube/cube-${data.count.toString()}-static.png`;
+				const gifSrc = `../static/images/cube/cube-${data.count.toString()}.gif`;
+		
+				cubeElement.src = gifSrc;
+
+				setTimeout(() => {
+					cubeElement.src = staticSrc;
+
+					if ( data.info == "Испытание окончено") {
+						// Очищаем элементы по классам и идентификаторам
+						document.querySelectorAll('.title, .statistics-games, .content, .cube, .clear').forEach(element => {
+							element.innerHTML = '';
+							element.style.cssText = '';
+							element.remove();
+						});
+						const circlesContainer = document.getElementById('circles-container');
+						if (circlesContainer) {
+							circlesContainer.remove();
+						}
+
+						const help = document.getElementById('help');
+						if (help) {
+							help.remove();
+						}
+
+						const actionButton = document.getElementById('cube-btn');
+						if (actionButton) {
+							actionButton.remove();
+						}
+
+						const textInfo = document.getElementById('text-info');
+						if (textInfo) {
+							textInfo.remove();
+						}
+						document.getElementById("info").textContent = data.info;
+						if (data.result == "Lose") {
+							document.getElementById("resultDetail").textContent = "Поражение";
+							document.getElementById("resultDetail").style.color = "red";
+						} 
+						if (data.result == "Win") {
+							document.getElementById("resultDetail").textContent = "Победа";
+							document.getElementById("resultDetail").style.color = "green";
+						}
+						document.getElementById("win").textContent = `Побед: ${data.win}`;
+						document.getElementById("lose").textContent = `Поражения: ${data.lose}`;
+						
+						if (data.awards.xp != 0) {
+							document.getElementById("xp").textContent = `Опыт: ${data.awards.xp}`;
+						}
+
+						document.getElementById("money").textContent = `Монеты: ${data.awards.money}`;
+
+						if (data.awards.ruby != 0) {
+							document.getElementById("ruby").textContent = `Рубины: ${data.awards.ruby}`;
+						}
+						if (data.awards.cube != 0) {
+							document.getElementById("cube").textContent = `Кубы: ${data.awards.cube}`;
+						}
+
+						// Создаем кнопку
+						var button = document.createElement('button');
+
+						// Устанавливаем атрибуты и содержимое кнопки
+						button.id = 'exit-btn';
+						button.className = 'action-button';
+						button.textContent = 'Выход'; // Текст внутри кнопки
+
+						// Добавляем обработчик события нажатия, который перенаправит на страницу 'arcade'
+						button.addEventListener('click', function() {
+							window.location.href = '/arcade';
+						});
+
+						// Находим родительский элемент по классу (например, .parent-class)
+						var parentElement = document.querySelector('.result');
+
+						// Добавляем кнопку в родительский элемент, если элемент найден
+						if (parentElement) {
+							parentElement.appendChild(button);
+						}
+						
+					} else {
+						if (data.result	== "Win") {
+							document.getElementById('win-count').textContent = data.win;
+						}
+						if (data.result	== "Lose") {
+							document.getElementById('loss-count').textContent = data.lose;
+						}
+						document.getElementById('round-count').textContent = data.win + data.lose + 1;
+					}
+
+					isCubeClicked = false; // Позволяет повторное нажатие на кнопку
+				}, 2800);
+			});
+		}
+	}
+</script>
+
+
+{% endblock content %}
