@@ -4,7 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { authStore } from '../stores/authStore';
 import { useNavigate } from 'react-router-dom';
-import '../styles/auth.scss';
+import '../styles/LoginPage.module.scss.scss';
 
 const LoginSchema = Yup.object().shape({
   login: Yup.string().required('Обязательное поле'),
