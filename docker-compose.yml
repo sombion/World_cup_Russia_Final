@@ -1,0 +1,37 @@
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: "Dockerfile.nginx"
+    container_name: app_nginx
+    ports:
+      - 80:80
+      - 443:443
+    links:
+      - db_app
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:3000"
+    environment:
+      - NODE_ENV=production
+  db_app:
+    image: postgres:16
+    container_name: db_app
+    command: -p 1221
+    expose:
+      - 1221
+    env_file:
+      - .env-non-dev
+
+  backend_app:
+    build:
+      context: .
+    env_file:
+      - .env-non-dev
+    container_name: backend_app
+    command: ["/app/docker/app.sh"]
+    ports:
+      - 8000:8000
+    depends_on:
+      - db_app
