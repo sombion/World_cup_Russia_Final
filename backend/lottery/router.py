@@ -9,7 +9,7 @@ from backend.lottery.service import end_all, create_lottery, detail_lottery
 
 router = APIRouter(
     prefix="/api/lottery",
-    tags=["API лоттереи"]
+    tags=["API лотереи"]
 )
 
 @router.get("/detail/{id}")

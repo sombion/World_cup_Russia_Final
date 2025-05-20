@@ -114,7 +114,7 @@ class LotteryNotFoundException(PCException):
 
 class MaxUsersInLotteryException(PCException):
     status_code = status.HTTP_409_CONFLICT
-    detail = "В лоттереи уже учавствует максимально кол-во участников"
+    detail = "В лотереи уже учавствует максимально кол-во участников"
 
 class InvalidCoinsAmountException(PCException):
     status_code = status.HTTP_400_BAD_REQUEST
