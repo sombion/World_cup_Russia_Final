@@ -25,7 +25,7 @@ async def register_user(
         is_admin=is_admin
     )
     statistics_data = await StatisticsDAO.add(0, 1, 0, 0, 45)
-    skills_data = await SkillsDAO.add(0, 0, 0, 0, 0, 1)
+    skills_data = await SkillsDAO.add(1, 1, 1, 1, 0, 1)
     await ProfileDAO.add(user_id, statistics_data.id, skills_data.id)
     return {'detail': 'Вы успешно зарегистрированы!'}
 

@@ -1,5 +1,6 @@
 from backend.admin.dao import AdminInfoDAO
 from backend.statistics.dao import StatisticsDAO
+from backend.statistics.models import Statistics
 
 class ArcadeGamesBase:
 	name_arcade = None
@@ -9,7 +10,7 @@ class ArcadeGamesBase:
 	@classmethod
 	async def create_noviciate(cls, profile, target_number: int = None):
 		info_games = await cls.model_dao.check_games(profile['id'], cls.name_arcade)
-		statistics_data = StatisticsDAO.find_by_id(profile['statistics_id'])
+		statistics_data: Statistics = await StatisticsDAO.find_by_id(profile['statistics_id'])
 		config = (await AdminInfoDAO.find_all())[0]
 		prise = config['price_mini_games']
 		if info_games == []:
