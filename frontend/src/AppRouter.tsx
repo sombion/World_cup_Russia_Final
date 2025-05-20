@@ -3,7 +3,7 @@ import { LoginPage } from './pages/LoginPage';
 import { RegisterPage } from './pages/RegisterPage';
 import { CreateLotteryPage } from './pages/admin/CreateLotteryPage';
 import { LotteryDetailsPage } from './pages/LotteryDetailPage';
-//import { PublicLotteryPage};
+import PublicLotteryPage from './pages/PublicLotteryPage';
 //import { PrivateRoute } from './components/PrivateRoute';
 // import { HomePage } from './pages/HomePage';
 // import { AdminPage } from './pages/AdminPage';
@@ -15,7 +15,7 @@ export const AppRouter = () => {
       <Route path="*" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/admin/lotteries/create" element={<CreateLotteryPage />} />
-      {/* <Route path="/lotteries" element={<PublicLotteriesPage />} /> */}
+      <Route path="/lotteries" element={<PublicLotteryPage />} />
       <Route path="/lotteries/:id" element={<LotteryDetailsPage />} />
 
       

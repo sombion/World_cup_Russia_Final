@@ -16,6 +16,21 @@ export interface Lottery {
   //created_at: string;
 }
 
+export interface LotteryList{
+  id: number;
+  title: string;
+  description: string;
+  price_ticket: number;
+  accumulation: string | null;
+  time_start: string;
+  time_end: string;
+  win_time: string | null;
+}
+
+export interface LotteryListResponse{
+  lotterys: LotteryList[];
+}
+
 export interface LotteriesFilter {
   title?: string;
   startDate?: string;
