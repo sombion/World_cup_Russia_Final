@@ -48,8 +48,8 @@ async def check_and_finish_lottery():
         result = random.sample(tickets, count_win)
         S=sum([1/x for x in range(1, count_win+1)])
         return S
-        win_current_user = int(int(lottery.accumulation)/S)
-        return win_current_user
+        # win_current_user = int(int(lottery.accumulation)/S)
+        # return win_current_user
         for number in result:
             await TicketDAO.win(lottery.id, number, )
         return S

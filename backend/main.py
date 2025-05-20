@@ -26,6 +26,7 @@ from backend.page.reactioncheck import router as router_reaction_check_page
 from backend.profile.router import router as router_profile_api
 
 app = FastAPI()
+app.mount("/static", StaticFiles(directory="backend/static"), name="static")
 
 
 app.include_router(auth_router)
