@@ -1,10 +1,9 @@
-// pages/LoginPage.tsx
 import { observer } from 'mobx-react-lite';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { authStore } from '../stores/authStore';
 import { useNavigate } from 'react-router-dom';
-import '../styles/LoginPage.module.scss.scss';
+import styles from '../styles/LoginPage.module.scss';
 
 const LoginSchema = Yup.object().shape({
   login: Yup.string().required('Обязательное поле'),
@@ -15,8 +14,8 @@ export const LoginPage = observer(() => {
   const navigate = useNavigate();
 
   return (
-    <div className="auth-container">
-      <div className="auth-card">
+    <div className={styles["auth-container"]}>
+      <div className={styles["auth-card"]}>
         <h1>Вход в систему</h1>
         
         <Formik
@@ -32,48 +31,48 @@ export const LoginPage = observer(() => {
             }
           }}
         >
-          {({ isSubmitting }) => (
+          {({ isSubmitting, errors, touched  }) => (
             <Form>
-              <div className="form-group">
+              <div className={`${styles["form-group"]} ${errors.login && touched.login ? styles["has-error"] : ""}`}>
                 <label htmlFor="login">Логин</label>
                 <Field 
                   type="text" 
                   name="login" 
                   id="login" 
-                  className="form-input" 
+                  className={styles['form-input']} 
                 />
-                <ErrorMessage name="login" component="div" className="error-message" />
+                <ErrorMessage name="login" component="div" className={styles['error-message']} />
               </div>
 
-              <div className="form-group">
+              <div className={`${styles["form-group"]} ${errors.password && touched.password ? styles["has-error"] : ""}`}>
                 <label htmlFor="password">Пароль</label>
                 <Field 
                   type="password" 
                   name="password" 
                   id="password" 
-                  className="form-input" 
+                  className={styles["form-input"]} 
                 />
-                <ErrorMessage name="password" component="div" className="error-message" />
+                <ErrorMessage name="password" component="div" className={styles["error-message"]} />
               </div>
 
               {authStore.error && (
-                <div className="error-message">{authStore.error}</div>
+                <div className={styles["error-message"]}>{authStore.error}</div>
               )}
 
               <button 
                 type="submit" 
                 disabled={isSubmitting || authStore.isLoading}
-                className="submit-btn"
+                className={styles["submit-btn"]}
               >
                 {authStore.isLoading ? 'Вход...' : 'Войти'}
               </button>
 
-              <div className="auth-links">
+              <div className={styles["auth-links"]}>
                 <span>Нет аккаунта?</span>
                 <button 
                   type="button" 
                   onClick={() => navigate('/register')}
-                  className="link-btn"
+                  className={styles["link-btn"]}
                 >
                   Зарегистрироваться
                 </button>

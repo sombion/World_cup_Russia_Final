@@ -1,0 +1,175 @@
+@use 'sass:color';
+@use './vars' as *;
+@use './global' as *;
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  min-height: 100vh;
+  padding-top: 6rem;
+
+  // Эстетичный фон с градиентом и анимацией
+  background: linear-gradient(
+    135deg,
+    #1e1f29,
+    #2c2d3e,
+    #3f3f55,
+    #4e4f66
+  );
+  background-size: 400% 400%;
+  animation: bgShift 15s ease infinite;
+}
+
+@keyframes bgShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 2rem;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(18px);
+  border-radius: $border-radius;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #ffffff;
+    font-size: 1.8rem;
+    letter-spacing: 0.5px;
+  }
+}
+
+.form-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: $border-radius;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.05);
+
+  label {
+    display: row;
+    margin-bottom: 0.5rem;
+    color: #e0e0e0;
+    font-size: 0.95rem;
+  }
+
+  .form-input {
+    height: $input-height;
+    padding: 0 1rem;
+    border-radius: $border-radius;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: 2px solid transparent;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+
+    &:focus {
+      outline: none;
+      border-color: #7b3aff;
+      box-shadow: 0 0 0 3px rgba(123, 58, 255, 0.3);
+    }
+  }
+
+  input[type='checkbox'] {
+    display: row;
+    width: 20px;
+    height: 20px;
+    margin-top: auto;
+    accent-color: #7b3aff;
+  }
+
+  &.has-error {
+    label {
+      color: $error-color;
+    }
+
+    .form-input {
+      border-color: $error-color;
+      box-shadow: 0 0 6px rgba($error-color, 0.6);
+    }
+  }
+  .form-checkbox {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        border-radius: $border-radius;
+        color: #ffffff;
+        font-weight: 500;
+  }
+}
+
+.error-message {
+  color: $error-color;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+.submit-btn {
+  width: 115%;
+  height: $button-height;
+  border-radius: $border-radius;
+  background: linear-gradient(135deg, #7b3aff, #6a29ee);
+  color: #ffffff;
+  font-weight: bold;
+  border: none;
+  box-shadow: 0 4px 14px rgba(123, 58, 255, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(123, 58, 255, 0.5);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.auth-links {
+  display: flex;
+  justify-content: center;
+  padding: 10px 2px;
+  font-size: 0.9rem;
+  width: 100%;
+  color: #ccc;
+
+  .link-btn {
+    background: none;
+    border: 2px solid transparent;
+    color: #9eaaff;
+    text-decoration: underline;
+    padding: 0;
+    font-size: inherit;
+    cursor: pointer;
+
+    &:hover {
+      color: #ffffff;
+    }
+  }
+  
+}
