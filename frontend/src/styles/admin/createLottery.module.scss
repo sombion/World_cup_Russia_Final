@@ -1,0 +1,119 @@
+// src/styles/admin/createLottery.scss
+.create-lottery-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+
+  h1 {
+    text-align: center;
+    color: #e30613;
+    margin-bottom: 30px;
+  }
+
+  .lottery-form {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+    .form-group {
+      margin-bottom: 20px;
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+
+      .form-input {
+        width: 100%;
+        padding: 10px 15px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+
+        &:focus {
+          border-color: #e30613;
+          outline: none;
+        }
+
+        &.textarea {
+          resize: vertical;
+          min-height: 100px;
+        }
+      }
+
+      .error-message {
+        color: #e30613;
+        font-size: 14px;
+        margin-top: 5px;
+      }
+    }
+
+    .form-row {
+      display: flex;
+      gap: 20px;
+
+      .form-group {
+        flex: 1;
+      }
+
+      @media (max-width: 600px) {
+        flex-direction: column;
+        gap: 0;
+      }
+    }
+
+    .form-error {
+      color: #e30613;
+      background-color: #ffebee;
+      padding: 10px 15px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 15px;
+      margin-top: 30px;
+
+      .submit-btn {
+        background-color: #e30613;
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 4px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: darken(#e30613, 10%);
+        }
+
+        &:disabled {
+          background-color: #ccc;
+          cursor: not-allowed;
+        }
+      }
+
+      .cancel-btn {
+        background-color: #f5f5f5;
+        color: #333;
+        border: 1px solid #ddd;
+        padding: 12px 25px;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: #eee;
+        }
+      }
+    }
+  }
+}
