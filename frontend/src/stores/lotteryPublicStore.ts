@@ -1,12 +1,12 @@
 // src/stores/lotteryPublicStore.ts
 import { makeAutoObservable, runInAction } from 'mobx';
 import axios from 'axios';
-import type { Lottery, LotteriesFilter, LotteryDetails } from '../types/lottery';
+import type { LotteryList, LotteriesFilter, LotteryDetails, LotteryListResponse } from '../types/lottery';
 
 export class LotteryPublicStore {
   isLoading = false;
   error: string | null = null;
-  lotteries: Lottery[] = [];
+  lotteries: LotteryList[] = [];
   filter: LotteriesFilter = {};
   currentLottery: LotteryDetails | null = null;
   buyLoading = false;
@@ -26,9 +26,9 @@ export class LotteryPublicStore {
       if (this.filter.title) params.append('title', this.filter.title);
       if (this.filter.startDate) params.append('start_date', this.filter.startDate);
 
-      const response = await axios.get(`/api/lottery/all?${params.toString()}`);
+      const response = await axios.get<LotteryListResponse>(`/api/lottery/all?${params.toString()}`);
       runInAction(() => {
-        this.lotteries = response.data;
+        this.lotteries = response.data.lotterys;
       });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
