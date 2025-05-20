@@ -14,19 +14,19 @@ const validationSchema = Yup.object({
   description: Yup.string()
     .required('Описание обязательно')
     .min(1, 'Минимум 1 символ'),
-  max_count_ticket: Yup.number()
-    .required('Количество билетов обязательно')
-    .min(5, 'Минимум 5 билетов'),
-  count_ticket_win: Yup.number()
-    .required('Количество выигрышных билетов обязательно')
-    .min(1, 'Минимум 1 выигрышный билет')
-    .test(
-      'less-than-max',
-      'Не может превышать общее количество билетов',
-      function(value) {
-        return value <= this.parent.max_count_ticket;
-      }
-    ),
+  // max_count_ticket: Yup.number()
+  //   .required('Количество билетов обязательно')
+  //   .min(5, 'Минимум 5 билетов'),
+  // count_ticket_win: Yup.number()
+  //   .required('Количество выигрышных билетов обязательно')
+  //   .min(1, 'Минимум 1 выигрышный билет')
+  //   .test(
+  //     'less-than-max',
+  //     'Не может превышать общее количество билетов',
+  //     function(value) {
+  //       return value <= this.parent.max_count_ticket;
+  //     }
+  //   ),
   time_start: Yup.string()
     .required('Дата начала обязательна')
     .test(
@@ -71,8 +71,8 @@ export const CreateLotteryPage = observer(() => {
         initialValues={{
           title: '',
           description: '',
-          max_count_ticket: 5,
-          count_ticket_win: 1,
+          //max_count_ticket: 5,
+         // count_ticket_win: 1,
           time_start: ''
         }}
         validationSchema={validationSchema}
@@ -85,7 +85,7 @@ export const CreateLotteryPage = observer(() => {
           }
         }}
       >
-        {({ isSubmitting, setFieldValue, values }) => (
+        {({ isSubmitting, setFieldValue }) => (
           <Form className={styles["lottery-form"]}>
             <div className={styles["form-group"]}>
               <label>Название лотереи</label>
@@ -111,7 +111,7 @@ export const CreateLotteryPage = observer(() => {
             </div>
 
             <div className={styles["form-section"]}>
-              <div className={styles["form-group"]}>
+              {/* <div className={styles["form-group"]}>
                 <label>Общее количество билетов</label>
                 <Field 
                   name="max_count_ticket" 
@@ -128,7 +128,7 @@ export const CreateLotteryPage = observer(() => {
                   }}
                 />
                 <ErrorMessage name="max_count_ticket" component="div" className={styles["error-message"]} />
-              </div>
+              </div> */}
 
               <div className={styles["form-group"]}>
                 <label>Дата и время начала</label>
@@ -143,7 +143,7 @@ export const CreateLotteryPage = observer(() => {
                 />
                 <ErrorMessage name="time_start" component="div" className={styles["error-message"]} />
               </div>
-              <div className={styles["form-group"]}>
+              {/* <div className={styles["form-group"]}>
                 <label>Количество выигрышных билетов</label>
                 <Field 
                   name="count_ticket_win" 
@@ -154,7 +154,7 @@ export const CreateLotteryPage = observer(() => {
                   placeholder="Введите количество"
                 />
                 <ErrorMessage name="count_ticket_win" component="div" className="error-message" />
-              </div>
+              </div> */}
             </div>
 
             {lotteryAdminStore.error && (
