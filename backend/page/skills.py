@@ -11,7 +11,7 @@ router = APIRouter()
 templates = Jinja2Templates(directory="backend/templates")
 
 
-@router.get("/skills")
+@router.get("/games_2/skills")
 async def index(request: Request, current_user: Users = Depends(get_current_user)):
     profile = (await ProfileDAO.find_by_id(current_user.id))[0]
     item_skill = await SkillShopDAO.find_list_now_shop(profile)

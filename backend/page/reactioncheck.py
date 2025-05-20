@@ -10,7 +10,7 @@ router = APIRouter()
 templates = Jinja2Templates(directory="backend/templates")
 
 
-@router.get("/reaction-check")
+@router.get("/games_2/reaction-check")
 async def game(request: Request, current_user: Users = Depends(get_current_user)):
     profile = (await ProfileDAO.find_by_id(current_user.id))[0]
     return templates.TemplateResponse("reactioncheck.html", {"request": request, "profile": profile})

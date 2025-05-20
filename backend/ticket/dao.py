@@ -7,11 +7,12 @@ class TicketDAO(BaseDAO):
     model = Ticket
 
     @classmethod
-    async def add(cls, number: int, lottery_id: int) -> Ticket:
+    async def add(cls, number: int, lottery_id: int, users_id: int) -> Ticket:
         async with async_session_maker() as session:
             stmt = insert(cls.model).values(
                 number=number,
-                lottery_id=lottery_id
+                lottery_id=lottery_id,
+                users_id=users_id
             ).returning(cls.model)
             result = await session.execute(stmt)
             await session.commit()
@@ -60,6 +61,13 @@ class TicketDAO(BaseDAO):
     @classmethod
     async def list_ticket_end(cls, lottery_id: int):
         async with async_session_maker() as session:
-            query = select(Ticket).where(Ticket.lottery_id == lottery_id)
+            query = select(Ticket.number).where(Ticket.lottery_id == lottery_id)
             result = await session.execute(query)
             return result.scalars().all()
+
+    @classmethod
+    async def win(cls, lottery_id: int, number: int, count_win: int):
+        async with async_session_maker() as session:
+            stmt = update(cls.model).where(cls.model.lottery_id==lottery_id, cls.model.number==number).values(is_win=True, count_win=count_win)
+            await session.execute(stmt)
+            await session.commit()

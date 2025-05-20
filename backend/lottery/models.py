@@ -11,7 +11,7 @@ class Lottery(Base):
     title: Mapped[str]
     description: Mapped[str]
     price_ticket: Mapped[int]
-    accumulation: Mapped[int] = mapped_column(nullable=True, default=None) # При покупке билета + цену * 0,6
+    accumulation: Mapped[int] = mapped_column(default=0)
     time_start: Mapped[datetime] = mapped_column(DateTime)
     time_end: Mapped[datetime] = mapped_column(DateTime)
     win_time: Mapped[datetime] = mapped_column(DateTime, nullable=True, default=None)

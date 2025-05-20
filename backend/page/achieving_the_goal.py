@@ -12,7 +12,7 @@ router = APIRouter()
 templates = Jinja2Templates(directory="backend/templates")
 
 
-@router.get("/achieving-the-goal")
+@router.get("/games_2/achieving-the-goal")
 async def achieving_the_goal(request: Request, current_user: Users = Depends(get_current_user)):
     profile = (await ProfileDAO.find_by_id(current_user.id))[0]
     info_arcade = await GamesAchievingTheGoal.create_noviciate(profile, random.choice([4, 5, 6]))

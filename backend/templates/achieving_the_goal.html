@@ -17,8 +17,8 @@
 			<span class="stat-w-l-label">Поражений</span>
 			<span class="stat-w-l-value" id="loss-count">{{info_achieving_the_goal.lose}}</span>
 		</div>
-	
-		
+
+
 		<div class="stat-w-l">
 			<span class="stat-w-l-label">Текущее зачение</span>
 			<span class="stat-w-l-value" id="current_number">{{info_achieving_the_goal.current_number}}</span>
@@ -58,10 +58,10 @@
 		selectedCircles.forEach(function(circle) {
 			selectedValues.push(circle.getAttribute('data-value'));
 		});
-		
+
 		console.log('Выделенные значения:', selectedValues);
 		handleCubeClick(selectedValues);
-		
+
 		selectedCircles.forEach(function(circle) {
 			circle.classList.remove('selected');
 		});
@@ -76,8 +76,8 @@
 				headers: {
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify({ 
-					"tg_id": '{{ profile.tg_id }}'  // Убедитесь, что '{{ profile.tg_id }}' заменено на актуальное значение
+				body: JSON.stringify({
+					"tg_id": '{{ profile.tg_id }}'
 				})
 			});
 			const data = await response.json();
@@ -92,7 +92,7 @@
 		if (!isCubeClicked) {
 			isCubeClicked = true;
 			const cubeElement = document.getElementById('cube-img');
-			
+
 			GetDate(selectedValues).then(data => {
 				if (data && data.status === 404) {
 					isCubeClicked = false;
@@ -100,7 +100,7 @@
 				}
 				const staticSrc = `../static/images/cube/cube-${data.count.toString()}-static.png`;
 				const gifSrc = `../static/images/cube/cube-${data.count.toString()}.gif`;
-		
+
 				cubeElement.src = gifSrc;
 
 				setTimeout(() => {
@@ -133,14 +133,14 @@
 						if (data.result == "Lose") {
 							document.getElementById("resultDetail").textContent = "Поражение";
 							document.getElementById("resultDetail").style.color = "red";
-						} 
+						}
 						if (data.result == "Win") {
 							document.getElementById("resultDetail").textContent = "Победа";
 							document.getElementById("resultDetail").style.color = "green";
 						}
 						document.getElementById("win").textContent = `Побед: ${data.win}`;
 						document.getElementById("lose").textContent = `Поражения: ${data.lose}`;
-						
+
 						if (data.awards.xp != 0) {
 							document.getElementById("xp").textContent = `Опыт: ${data.awards.xp}`;
 						}
@@ -153,7 +153,7 @@
 						if (data.awards.cube != 0) {
 							document.getElementById("cube").textContent = `Кубы: ${data.awards.cube}`;
 						}
-						
+
 						// Создаем кнопку
 						var button = document.createElement('button');
 
@@ -188,7 +188,7 @@
 						document.getElementById('current_cube').textContent = data.current_cube;
 					}
 
-					
+
 
 					isCubeClicked = false; // Позволяет повторное нажатие на кнопку
 				}, 2800);
@@ -203,7 +203,7 @@
 <div class="result" id="result">
 	<div style="text-align: center;">
 		<h2 id="info"></h2>
-		
+
 		<p id="resultDetail"></p>
 		<p id="win"></p>
 		<p id="lose"></p>

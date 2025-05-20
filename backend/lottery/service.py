@@ -40,18 +40,16 @@ async def check_and_finish_lottery():
     for lottery in lotteries_to_close:
         # Получаем все билеты по этой лотерее
         tickets = await TicketDAO.list_ticket_end(lottery.id)
-
         if not tickets:
             # Если билетов нет — просто завершаем лотерею
             lottery.win_time = now
             continue
-
-        return len(tickets)
-
-        # Выбираем случайный выигрышный билет
-        winner_ticket = random.choice(tickets)
-        winner_ticket.is_win = True
-        lottery.win_time = now
-
-        # Можно также подсчитать выигрыш и сохранить в `count_win`
-        winner_ticket.count_win = lottery.accumulation or 0
+        count_win = len(tickets) // 2
+        result = random.sample(tickets, count_win)
+        S=sum([1/x for x in range(1, count_win+1)])
+        return S
+        win_current_user = int(int(lottery.accumulation)/S)
+        return win_current_user
+        for number in result:
+            await TicketDAO.win(lottery.id, number, )
+        return S

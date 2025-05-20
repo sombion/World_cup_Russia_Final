@@ -15,7 +15,7 @@ router = APIRouter()
 templates = Jinja2Templates(directory="backend/templates")
 
 
-@router.get("/arcade")
+@router.get("/games_2/arcade")
 async def index(request: Request, current_user: Users = Depends(get_current_user)):
     profile = (await ProfileDAO.find_by_id(current_user.id))[0]
 

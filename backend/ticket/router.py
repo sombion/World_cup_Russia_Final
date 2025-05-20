@@ -11,9 +11,13 @@ router = APIRouter(
     tags=["API ticket"]
 )
 
-@router.get("/lottery/{lottery_id}")
-async def api_detail_ticket(lottery_id: int, current_user: Users = Depends(get_current_user)):
-    return await TicketDAO.find_all(lottery_id=lottery_id, user_id=current_user.id)
+@router.get("/all/{lottery_id}")
+async def api_all_ticket(lottery_id: int):
+    return await TicketDAO.find_all(lottery_id=lottery_id)
+
+@router.get("/my")
+async def api_my_ticket(current_user: Users = Depends(get_current_user)):
+    return {"tickets": await TicketDAO.find_all(users_id=current_user.id)}
 
 @router.post("/buy")
 async def api_buy_ticket(buy_ticket_data: SBuyTicket, current_user: Users = Depends(get_current_user)):

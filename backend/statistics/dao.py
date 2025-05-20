@@ -73,14 +73,12 @@ class StatisticsDAO(BaseDAO):
             return {"status": 200}
 
     @classmethod
-    async def add_money(cls, user_id: int, money: int):
+    async def add_money(cls, id: int, money: int):
         async with async_session_maker() as session:
             stmt = (
                 update(cls.model)
-                .join(Profile, cls.model.id==Profile.statistics_id)
-                .where(Profile.id==user_id)
+                .where(cls.model.id==id)
                 .values(money=cls.model.money+money)
             )
-            result = await session.execute(stmt)
+            await session.execute(stmt)
             await session.commit()
-            return result.scalar()
