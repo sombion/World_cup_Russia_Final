@@ -12,8 +12,8 @@ router = APIRouter(
 
 
 @router.get("/me", description="Просмотр данных о текущем пользователе")
-async def api_get_me(current_user: Users = Depends(get_current_user)) -> dict:
-    return await UsersDAO.find_by_id(current_user.id)
+async def api_get_me(current_user: Users = Depends(get_current_user)):
+    return current_user
 
 @router.post("/register", description="Регистрация")
 async def api_register_user(user_data: SUserRegister) -> dict:
@@ -25,7 +25,7 @@ async def api_register_user(user_data: SUserRegister) -> dict:
     )
 
 @router.post("/login", description="Авторизация")
-async def api_auth_user(response: Response, user_data: SUserAuth) -> dict:
+async def api_auth_user(response: Response, user_data: SUserAuth):
     login_data = await login_user(login=user_data.login, password=user_data.password)
     access_token = login_data["access_token"]
     response.set_cookie(key="pc_access_token", value=access_token, httponly=True)
@@ -33,7 +33,7 @@ async def api_auth_user(response: Response, user_data: SUserAuth) -> dict:
     return login_data
 
 @router.post("/logout", description="Выход из записи")
-async def api_logout_user(response: Response) -> dict:
+async def api_logout_user(response: Response):
     response.delete_cookie(key="pc_access_token")
     return {'detail': 'Пользователь успешно вышел из системы'}
 
