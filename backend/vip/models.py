@@ -17,3 +17,4 @@ class VipInfo(Base):
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     lvl: Mapped[int]
     description: Mapped[str]
+    price: Mapped[int]
