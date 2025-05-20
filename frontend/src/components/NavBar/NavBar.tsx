@@ -12,6 +12,10 @@ export const Navbar = observer(() => {
     navigate("/login"); 
   };
 
+   const launchGame2 = () => {
+    window.open(`http://127.0.0.1:8000/games_2/`, '_blank');
+  };
+
   if (authStore.isLoading) return <div>Загрузка...</div>;
 
   return (
@@ -36,6 +40,9 @@ export const Navbar = observer(() => {
             {authStore.user?.login}
             {authStore.isAdmin && " (Admin)"}
           </span>
+          <button onClick={launchGame2} className="game-button">
+          Игра 2
+        </button>
           {!authStore.isAdmin && (
             <span className="user-money">Баланс: {authStore.user?.money} ₽</span>
           )}
