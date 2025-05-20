@@ -21,8 +21,6 @@ async def api_create_lottery(lottery_data: SCreateLottery, current_user: Users =
     return await create_lottery(
         lottery_data.title,
         lottery_data.description,
-        lottery_data.max_count_ticket,
-        lottery_data.count_ticket_win,
         lottery_data.time_start.replace(second=0, microsecond=0, tzinfo=None)
     )
 

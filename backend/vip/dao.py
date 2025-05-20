@@ -8,4 +8,10 @@ from backend.vip.models import VipInfo
 class VipDAO(BaseDAO):
     model = VipInfo
 
-    
+    @classmethod
+    async def add(cls):
+        async with async_session_maker() as session:
+            stmt = ...
+            result = await session.execute(stmt)
+            await session.commit()
+            return result.scalar()

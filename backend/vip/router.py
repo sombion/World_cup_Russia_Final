@@ -13,10 +13,9 @@ router = APIRouter(
 
 @router.post('/info')
 async def api_vip_info(current_user: Users = Depends(get_current_user)):
-	profile = await VipDAO.find_by_id(current_user.id)
-	return profile
+	return await VipDAO.find_by_id(current_user.id)
 
 @router.get('/buy')
-async def api_vip_buy(vip_data: SBuyVip):
-    #Покупака випки за монетки(бонусная валюта)
+async def api_vip_buy(vip_data: SBuyVip, current_user: Users = Depends(get_current_user)):
+    await 
     return

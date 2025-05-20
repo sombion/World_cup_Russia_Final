@@ -10,8 +10,6 @@ class Lottery(Base):
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     title: Mapped[str]
     description: Mapped[str]
-    max_count_ticket: Mapped[int]
-    count_ticket_win: Mapped[int]
     price_ticket: Mapped[int]
     accumulation: Mapped[int] = mapped_column(nullable=True, default=None) # При покупке билета + цену * 0,6
     time_start: Mapped[datetime] = mapped_column(DateTime)
