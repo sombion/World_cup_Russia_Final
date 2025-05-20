@@ -3,6 +3,7 @@ from sqlalchemy import insert, select, update, and_, func
 from backend.dao.base import BaseDAO
 from backend.database import async_session_maker
 from backend.info.models import InfoXP
+from backend.profile.models import Profile
 from backend.statistics.models import Statistics
 
 
@@ -56,3 +57,16 @@ class StatisticsDAO(BaseDAO):
             await session.execute(stmt)
             await session.commit()
             return {"status": 200}
+
+    @classmethod
+    async def add_money(cls, user_id: int, money: int):
+        async with async_session_maker() as session:
+            stmt = (
+                update(cls.model)
+                .join(Profile, cls.model.id==Profile.statistics_id)
+                .where(Profile.id==user_id)
+                .values(money=cls.model.money+money)
+            )
+            result = await session.execute(stmt)
+            await session.commit()
+            return result.scalar()

@@ -1,7 +1,7 @@
 from fastapi import Response
 from backend.auth.auth import authenticate_user, create_access_token, get_password_hash, verify_password
 from backend.auth.dao import UsersDAO
-from backend.auth.models import UserRole, Users
+from backend.auth.models import Users
 from backend.exceptions import IncorrectPasswordException, UserAlreadyExistsException
 
 
@@ -9,9 +9,7 @@ async def register_user(
     username: str,
     login: str,
     password: str,
-    age: int | None,
-    region_id: int | None,
-    role: UserRole
+    is_admin: bool
 ):
     user = await UsersDAO.find_one_or_none(login=login)
     if user:
@@ -21,8 +19,7 @@ async def register_user(
         username=username,
         login=login,
         hash_password=hash_password,
-        age=age,
-        role=role
+        is_admin=is_admin
     )
     return {'detail': 'Вы успешно зарегистрированы!'}
 

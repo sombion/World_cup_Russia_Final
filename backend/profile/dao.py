@@ -25,7 +25,7 @@ class ProfileDAO(BaseDAO):
             return result.mappings().all()
 
     @classmethod
-    async def find_id_from_id(cls, user_id: int):
+    async def find_id_from_user_id(cls, user_id: int):
         async with async_session_maker() as session:
             query = select(cls.model.id).filter(Profile.user_id==user_id)
             result = await session.execute(query)

@@ -8,20 +8,20 @@ const api = axios.create({
 
 export const authApi = {
     getMe: async (): Promise<IUser> => {
-        const response = await api.get('/me');
+        const response = await api.get('/api/auth/me');
         return response.data
     },
 
     register: async (username: string, login: string, password: string): Promise<void> => {
-        await api.post('/register', { username, login, password});
+        await api.post('/api/auth/register', { username, login, password});
     },
 
     login: async (login: string, password: string): Promise<IUser> => {
-        const response = await api.post('/login', {login, password});
+        const response = await api.post('/api/auth/login', {login, password});
         return response.data;
     },
 
     logout: async (): Promise<void> => {
-        await api.post('/logout');
+        await api.post('/api/auth/logout');
     },
 };

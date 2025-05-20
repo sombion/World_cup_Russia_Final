@@ -10,6 +10,20 @@ from alembic import context
 sys.path.insert(0, dirname(dirname(dirname(abspath(__file__)))))
 
 from backend.database import Base
+from backend.achieving_the_goal.models import InfoAchievingTheGoal
+from backend.arcade.models import Arcade
+from backend.auth.models import Users
+from backend.diceroll.models import InfoDicePoll
+from backend.info.models import InfoXP
+from backend.lottery.models import Lottery
+from backend.profile.models import Profile
+from backend.shop.models import ShopItem
+from backend.skills.models import Skills
+from backend.skillshop.models import ShopSkillsInfo
+from backend.statistics.models import Statistics
+from backend.ticket.models import Ticket
+from backend.admin.models import AdminInfo
+from backend.vip.models import Vip, VipInfo
 
 from backend.config import settings
 

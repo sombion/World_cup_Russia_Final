@@ -2,12 +2,19 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from backend.auth.router import router as auth_router
+from backend.admin.router import router as admin_router
+from backend.lottery.router import router as lottery_router
+from backend.ticket.router import router as ticket_router
+
 
 
 app = FastAPI()
 
 
 app.include_router(auth_router)
+app.include_router(admin_router)
+app.include_router(lottery_router)
+app.include_router(ticket_router)
 
 
 origins = [
