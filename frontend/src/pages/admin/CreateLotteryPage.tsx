@@ -79,7 +79,7 @@ export const CreateLotteryPage = observer(() => {
         onSubmit={async (values, { setSubmitting }) => {
           try {
             await lotteryAdminStore.createLottery(values);
-            navigate('/', {replace: true});
+            navigate('/lotteries', {replace: true});
           } finally {
             setSubmitting(false);
           }
@@ -171,7 +171,7 @@ export const CreateLotteryPage = observer(() => {
               </button>
               <button
                 type="button"
-                onClick={() => navigate('/admin/lotteries')}
+                onClick={() => navigate('/lotteries')}
                 className={styles["cancel-btn"]}
               >
                 Отмена

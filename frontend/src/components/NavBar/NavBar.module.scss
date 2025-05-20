@@ -1,0 +1,50 @@
+// Navbar.scss
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #2c3e50;
+  color: white;
+
+  &-left, &-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  a {
+    color: white;
+    text-decoration: none;
+    transition: opacity 0.3s;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .user-info {
+    font-weight: bold;
+  }
+
+  .user-money {
+    background: #27ae60;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+  }
+
+  .logout-button {
+    background: #e74c3c;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+  }
+
+  .login-button {
+    background: #3498db;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+  }
+}

@@ -5,14 +5,11 @@ import { lotteryPublicStore } from '../stores/lotteryPublicStore';
 import { LotteryCard } from '../components/LotteryCard/LotteryCard';
 import styles from '../styles/publicLotteries.module.scss';
 
+
 const PublicLotteriesPage: React.FC = observer(() => {
   useEffect(() => {
     lotteryPublicStore.fetchLotteries();
   }, []);
-
-  const handleBuyTicket = async (lotteryId: number) => {
-    return await lotteryPublicStore.buyTicket(lotteryId);
-  };
 
   if (lotteryPublicStore.isLoading && !lotteryPublicStore.lotteries.length) {
     return <div className={styles.loading}>Загрузка лотерей...</div>;
@@ -45,9 +42,6 @@ const PublicLotteriesPage: React.FC = observer(() => {
           <LotteryCard
             key={lottery.id}
             lottery={lottery}
-            onBuy={handleBuyTicket}
-            isBuying={lotteryPublicStore.buyLoading}
-            buyError={lotteryPublicStore.buyError}
           />
         ))}
       </div>

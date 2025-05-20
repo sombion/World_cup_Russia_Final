@@ -24,7 +24,7 @@ export const LoginPage = observer(() => {
           onSubmit={async (values, { setSubmitting }) => {
             try {
               await authStore.login(values);
-              navigate('/');
+              navigate('/lotteries');
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             } catch (error) {
               setSubmitting(false);

@@ -1,31 +1,62 @@
-import { Routes, Route } from 'react-router-dom';
-import { LoginPage } from './pages/LoginPage';
-import { RegisterPage } from './pages/RegisterPage';
-import { CreateLotteryPage } from './pages/admin/CreateLotteryPage';
-import { LotteryDetailsPage } from './pages/LotteryDetailPage';
-import PublicLotteryPage from './pages/PublicLotteryPage';
-//import { PrivateRoute } from './components/PrivateRoute';
-// import { HomePage } from './pages/HomePage';
-// import { AdminPage } from './pages/AdminPage';
+import { Routes, Route } from 'react-router-dom'
+import { LoginPage } from './pages/LoginPage'
+import { RegisterPage } from './pages/RegisterPage'
+import { CreateLotteryPage } from './pages/admin/CreateLotteryPage'
+import { LotteryDetailsPage } from './pages/LotteryDetailPage'
+import PublicLotteryPage from './pages/PublicLotteryPage'
+// import { PrivateRoute } from './components/PrivateRoute'
+// import { AdminRoute } from './components/AdminRoute'
+//import type { ReactNode } from 'react'
+import { Navbar } from './components/NavBar/NavBar'
+//import { WithoutNavbar } from './layouts/WithoutNavBar'
 
 export const AppRouter = () => {
+  
+// const LayoutWithNavbar = ({ children }: { children: ReactNode }) => {
+//   return (
+//     <>
+//       <Navbar />
+//       {children}
+//     </>
+//   );
+// };
+
   return (
-    <Routes>
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="*" element={<LoginPage />} />
-      <Route path="/register" element={<RegisterPage />} />
-      <Route path="/admin/lotteries/create" element={<CreateLotteryPage />} />
-      <Route path="/lotteries" element={<PublicLotteryPage />} />
-      <Route path="/lotteries/:id" element={<LotteryDetailsPage />} />
+    <>
+      <Navbar/>
+      <Routes>
+        {/* Публичные маршруты */}
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
 
-      
-      {/* <Route element={<PrivateRoute />}>
-        <Route path="/" element={<HomePage />} />
-      </Route>
+          <Route path="/lotteries" element={
+              <PublicLotteryPage />
+          } />
 
-      <Route element={<PrivateRoute adminOnly />}>
-        <Route path="/admin" element={<AdminPage />} />
-      </Route> */}
-    </Routes>
-  );
-};
+        <Route path="/lotteries/:id" element={
+            <LotteryDetailsPage />
+        } />
+        
+        {/* Админские маршруты */}
+         <Route path="/lotteries" element={
+            <PublicLotteryPage />
+        } />
+
+        
+         <Route path="/admin/lotteries/create" element={
+            <CreateLotteryPage />
+        }/>
+
+        {/* Fallback */}
+        <Route path="*" element={<LoginPage />} />
+      </Routes>
+    </>
+  )
+}
+// const LayoutWithNavbar = () => {
+//   return (
+//     <>
+//       <Navbar />
+//     </>
+//   );
+// };
