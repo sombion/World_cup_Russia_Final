@@ -68,3 +68,13 @@ class LotteryDAO(BaseDAO):
             query = (select(cls.model.__table__.columns).where(cls.model.time_end > datetime.utcnow()))
             result = await session.execute(query)
             return result.mappings().all()
+
+    @classmethod
+    async def list_end_lottery(cls, time_now):
+        async with async_session_maker() as session:
+            query = select(Lottery).where(
+                Lottery.time_end < time_now,
+                Lottery.win_time.is_(None)
+            )
+            result = await session.execute(query)
+            return result.scalars().all()

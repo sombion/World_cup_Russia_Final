@@ -5,7 +5,7 @@ from backend.auth.dependencies import get_admin_user
 from backend.auth.models import Users
 from backend.lottery.dao import LotteryDAO
 from backend.lottery.schemas import SCreateLottery
-from backend.lottery.service import create_lottery, detail_lottery
+from backend.lottery.service import check_and_finish_lottery, create_lottery, detail_lottery
 
 router = APIRouter(
     prefix="/api/lottery",
@@ -27,3 +27,7 @@ async def api_create_lottery(lottery_data: SCreateLottery, current_user: Users =
 @router.get("/all")
 async def api_all_lottery():
     return {"lotterys": await LotteryDAO.all_future()}
+
+@router.get("/check")
+async def api_check_and_finish_lottery():
+    return await check_and_finish_lottery()

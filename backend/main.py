@@ -5,6 +5,7 @@ from backend.auth.router import router as auth_router
 from backend.admin.router import router as admin_router
 from backend.lottery.router import router as lottery_router
 from backend.ticket.router import router as ticket_router
+from backend.vip.router import router as router_vip_api
 
 from fastapi.staticfiles import StaticFiles
 
@@ -31,6 +32,7 @@ app.include_router(auth_router)
 app.include_router(admin_router)
 app.include_router(lottery_router)
 app.include_router(ticket_router)
+app.include_router(router_vip_api)
 
 app.include_router(router_home_page)
 app.include_router(router_cube_game_api)

@@ -56,3 +56,10 @@ class TicketDAO(BaseDAO):
             result = await session.execute(stmt)
             await session.commit()
             return result.scalar()
+
+    @classmethod
+    async def list_ticket_end(cls, lottery_id: int):
+        async with async_session_maker() as session:
+            query = select(Ticket).where(Ticket.lottery_id == lottery_id)
+            result = await session.execute(query)
+            return result.scalars().all()
