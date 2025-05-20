@@ -1,4 +1,4 @@
-from sqlalchemy import select, update
+from sqlalchemy import insert, select, update
 
 from backend.dao.base import BaseDAO
 from backend.database import async_session_maker
@@ -9,9 +9,9 @@ class VipDAO(BaseDAO):
     model = VipInfo
 
     @classmethod
-    async def add(cls):
+    async def add(cls, user_id: int, lvl: int):
         async with async_session_maker() as session:
-            stmt = ...
+            stmt = insert(cls.model).values(user_id, lvl)
             result = await session.execute(stmt)
             await session.commit()
             return result.scalar()

@@ -1,4 +1,4 @@
-from backend.exceptions import GameNotFinishedException, InvalidCoinsAmountException, MaxUsersInLotteryException, TicketAlreadyRedeemedException, TicketNotFoundException, UnableToWithdrawCoinsException
+from backend.exceptions import GameNotFinishedException, InvalidCoinsAmountException, TicketAlreadyRedeemedException, TicketNotFoundException, UnableToWithdrawCoinsException
 from backend.lottery.dao import LotteryDAO
 from backend.lottery.models import Lottery
 from backend.profile.dao import ProfileDAO

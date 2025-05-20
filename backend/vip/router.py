@@ -17,5 +17,5 @@ async def api_vip_info(current_user: Users = Depends(get_current_user)):
 
 @router.get('/buy')
 async def api_vip_buy(vip_data: SBuyVip, current_user: Users = Depends(get_current_user)):
-    await 
-    return
+    await VipDAO.add(vip_data.lvl, current_user.id)
+    return {"detail": "Билет успешно куплен"}
