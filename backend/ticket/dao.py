@@ -1,4 +1,4 @@
-from sqlalchemy import delete, func, insert, select, update
+from sqlalchemy import delete, desc, func, insert, select, update
 from backend.dao.base import BaseDAO
 from backend.database import async_session_maker
 from backend.ticket.models import Ticket
@@ -18,11 +18,11 @@ class TicketDAO(BaseDAO):
             return result.scalar()
 
     @classmethod
-    async def last_ticket(cls):
+    async def last_ticket(cls, lottery_id: int):
         async with async_session_maker() as session:
-            query = 
+            query = select(Ticket.number).where(cls.model.lottery_id==lottery_id).order_by(desc(Ticket.number)).limit(1)
             result = await session.execute(query)
-            return result.mappings().all()
+            return result.scalar_one_or_none()
 
     @classmethod
     async def count(cls, lottery_id: int):

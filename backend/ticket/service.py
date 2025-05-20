@@ -18,11 +18,11 @@ async def buy_ticket(lottery_id: int, money: int, user_id: int):
         raise InvalidCoinsAmountException
     if statictics_data.money < lottery_data.price_ticket * 2:
         raise UnableToWithdrawCoinsException
-    last_ticker = TicketDAO.find_all(lottery_id=lottery_id)
+    last_ticker = TicketDAO.last_ticket(lottery_id=lottery_id)
     if not last_ticker:
-        # Присмоение пользователю номер в бд
         ticket_data: Ticket = await TicketDAO.add(0, lottery_id)
-    
+    else:
+        ticket_data: Ticket = await TicketDAO.add(last_ticker+1, lottery_id)
     # Списание денег
     await StatisticsDAO.edit_money(statictics_data.id, money)
     # Изменение призового фонда
