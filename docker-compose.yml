@@ -1,20 +1,20 @@
 services:
-  # nginx:
-  #   build:
-  #     context: .
-  #     dockerfile: "Dockerfile.nginx"
-  #   container_name: app_nginx
-  #   ports:
-  #     - 80:80
-  #     - 443:443
-  #   links:
-  #     - db_app
-  # frontend:
-  #   build: ./frontend
-  #   ports:
-  #     - "5173:3000"
-  #   environment:
-  #     - NODE_ENV=production
+  nginx:
+    build:
+      context: .
+      dockerfile: "Dockerfile.nginx"
+    container_name: app_nginx
+    ports:
+      - 80:80
+      - 443:443
+    links:
+      - db_app
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:3000"
+    environment:
+      - NODE_ENV=production
   db_app:
     image: postgres:16
     container_name: db_app
