@@ -8,3 +8,4 @@ class AdminInfo(Base):
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     price_ticket: Mapped[int] = mapped_column(default=100)
     minutes: Mapped[int] = mapped_column(default=15)
+    price_mini_games: Mapped[int]

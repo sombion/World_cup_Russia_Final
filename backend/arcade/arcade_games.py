@@ -1,3 +1,4 @@
+from backend.admin.dao import AdminInfoDAO
 from backend.statistics.dao import StatisticsDAO
 
 class ArcadeGamesBase:
@@ -8,14 +9,15 @@ class ArcadeGamesBase:
 	@classmethod
 	async def create_noviciate(cls, profile, target_number: int = None):
 		info_games = await cls.model_dao.check_games(profile['id'], cls.name_arcade)
-		prise = 1
+		statistics_data = StatisticsDAO.find_by_id(profile['statistics_id'])
+		config = AdminInfoDAO.find_by_id(1)
+		prise = config.price_mini_games
 		if info_games == []:
 			statistics_id = profile['statistics_id']
-			ticket = profile['ticket']
-			if ticket - prise < 0:
-				return {"status": 402, "error": "Недостаточно билетов"}
+			if statistics_data.money - prise < 0:
+				return {"status": 402, "error": "Недостаточно монет"}
 			else:
-				await StatisticsDAO.edit_ticket(statistics_id, prise)
+				await StatisticsDAO.edit_money(id=statistics_id, money=prise)
 			result = await cls.model_dao.create_model(profile['id'], cls.name_arcade, target_number)
 			return result
 		else:
@@ -47,14 +49,14 @@ class ArcadeGamesBase:
 	@classmethod
 	async def end_game(cls, profile, info_games):
 		status = ""
-		if info_games['win'] >= 12:
+		if info_games['win'] >= 10:
 			status = "win"
 			await cls.model_dao.end_games(profile['id'], status, cls.name_arcade)
 		if info_games['lose'] >= 3:
 			status = "lose"
 			await cls.model_dao.end_games(profile['id'], status, cls.name_arcade)
 		lvl = info_games['win']
-		if lvl <= 0 or lvl > 12:
+		if lvl <= 0 or lvl > 10:
 			return {
 				"xp": 0,
 				"money": 0,
@@ -72,7 +74,7 @@ class ArcadeGamesBase:
 		money = info_award['money']
 		ruby = info_award['ruby']
 		cube = info_award['cube']
-		await cls.model_dao.give_awards(statistics_id, lvl, xp, money, ruby + (lvl - current_level) * 5, cube)
+		await cls.model_dao.give_awards(statistics_id, lvl, xp, money, ruby + (lvl - current_level) * 10, cube)
 		return {
 			"xp": additional_xp,
 			"money": money,

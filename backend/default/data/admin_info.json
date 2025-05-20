@@ -1,6 +1,7 @@
 [
     {
         "price_ticket": 100,
-        "minutes": 15
+        "minutes": 15,
+        "price_mini_games": 50
     }
 ]

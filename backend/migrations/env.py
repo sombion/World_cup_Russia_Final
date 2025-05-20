@@ -14,7 +14,7 @@ from backend.achieving_the_goal.models import InfoAchievingTheGoal
 from backend.arcade.models import Arcade
 from backend.auth.models import Users
 from backend.diceroll.models import InfoDicePoll
-from backend.info.models import InfoStatistics, InfoXP
+from backend.info.models import InfoXP
 from backend.lottery.models import Lottery
 from backend.profile.models import Profile
 from backend.shop.models import ShopItem

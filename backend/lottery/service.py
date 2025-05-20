@@ -12,7 +12,7 @@ async def create_lottery(
     count_ticket_win: int,
     time_start: datetime,
 ):
-    admin_data = await AdminInfoDAO.config()
+    admin_data = await AdminInfoDAO.find_by_id(1)
     price_ticket = admin_data.price_ticket
     minutes = admin_data.minutes
     if count_ticket_win > max_count_ticket//2:
@@ -35,5 +35,6 @@ async def detail_lottery(lottery_id: int):
     lottery_detail = await LotteryDAO.find_by_id(lottery_id)
     if not lottery_detail:
         raise LotteryNotFoundException
-    lottery_count = await TicketDAO.count(lottery_id)
-    return lottery_detail + lottery_count
+    ticket_count = await TicketDAO.count(lottery_id)
+    lottery_detail.ticket_count = ticket_count
+    return lottery_detail
