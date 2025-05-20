@@ -4,6 +4,7 @@ export interface IUser {
   username: string;
   login: string;
   is_admin: boolean;
+  money: number;
 }
 
 export interface IAuthResponse {

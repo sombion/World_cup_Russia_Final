@@ -3,20 +3,17 @@ import React from 'react';
 import { observer } from 'mobx-react-lite';
 import type { LotteryList } from '../../types/lottery';
 import styles from './LotteryCard.module.scss';
+import { useNavigate } from 'react-router-dom';
 
 interface LotteryCardProps {
   lottery: LotteryList;
-  onBuy: (lotteryId: number) => Promise<boolean>;
-  isBuying: boolean;
-  buyError?: string | null;
 }
 
+
 export const LotteryCard: React.FC<LotteryCardProps> = observer(({
-  lottery,
-  onBuy,
-  isBuying,
-  buyError
+  lottery
 }) => {
+  const navigate = useNavigate();
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleString('ru-RU', {
@@ -27,9 +24,8 @@ export const LotteryCard: React.FC<LotteryCardProps> = observer(({
       minute: '2-digit'
     });
   };
-
-  const handleBuy = async () => {
-    await onBuy(lottery.id);
+const handleViewDetails = () => {
+    navigate(`/lotteries/${lottery.id}`);
   };
 
   return (
@@ -59,14 +55,12 @@ export const LotteryCard: React.FC<LotteryCardProps> = observer(({
       </div>
 
       <button
-        onClick={handleBuy}
-        disabled={isBuying}
+        onClick={handleViewDetails}
         className={styles.buyButton}
       >
-        {isBuying ? 'Покупка...' : 'Купить билет'}
+        Подробнее о билетах...
       </button>
       
-      {buyError && <div className={styles.error}>{buyError}</div>}
     </div>
   );
 });

@@ -23,7 +23,7 @@ export const LotteryDetailsPage = observer(() => {
     
     const success = await lotteryPublicStore.buyTicket(lottery.id);
     if (success) {
-      navigate('/');
+      navigate('/lotteries');
     }
   };
 

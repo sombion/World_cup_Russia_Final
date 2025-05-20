@@ -1,14 +1,19 @@
 import { Navigate } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 import { authStore } from '../stores/authStore';
-import type { ReactElement } from 'react';
+import { type ReactNode } from 'react';
 
-interface PrivateRouteProps {
-  children: ReactElement;
+interface AdminRouteProps {
+  children: ReactNode;
 }
 
-export const PrivateRoute = observer(({ children }: PrivateRouteProps) => {
+export const AdminRoute = observer(({ children }: AdminRouteProps) => {
+
+
   if (!authStore.isAuthenticated) {
+    return Navigate({ to: '/login', replace: true });
+  }
+  if (!authStore.user?.is_admin) {
     return Navigate({ to: '/login', replace: true });
   }
   return children;
