@@ -13,7 +13,7 @@ router = APIRouter(
 
 @router.get("/me", description="Просмотр данных о текущем пользователе")
 async def api_get_me(current_user: Users = Depends(get_current_user)):
-    return current_user
+    return await UsersDAO.detail(current_user.id)
 
 @router.post("/register", description="Регистрация")
 async def api_register_user(user_data: SUserRegister) -> dict:

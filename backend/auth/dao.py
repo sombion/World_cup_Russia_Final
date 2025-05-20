@@ -40,9 +40,10 @@ class UsersDAO(BaseDAO):
     async def detail(cls, user_id: int):
         async with async_session_maker() as session:
             query = (
-                select(cls.model.__tablename__.column)
+                select(cls.model.__table__.columns, Profile.__table__.columns, Statistics.__table__.columns)
                 .join(Profile, cls.model.id == Profile.user_id)
                 .join(Statistics, Statistics.id == Profile.user_id)
+                .where(cls.model.id == user_id)
             )
             result = await session.execute(query)
             return result.mappings().all()
