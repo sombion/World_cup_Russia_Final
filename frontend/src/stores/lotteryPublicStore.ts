@@ -1,13 +1,17 @@
 // src/stores/lotteryPublicStore.ts
 import { makeAutoObservable, runInAction } from 'mobx';
 import axios from 'axios';
-import type { Lottery, LotteriesFilter } from '../types/lottery';
+import type { Lottery, LotteriesFilter, LotteryDetails } from '../types/lottery';
 
 export class LotteryPublicStore {
   isLoading = false;
   error: string | null = null;
   lotteries: Lottery[] = [];
   filter: LotteriesFilter = {};
+  currentLottery: LotteryDetails | null = null;
+  buyLoading = false;
+  buyError: string | null = null;
+
 
   constructor() {
     makeAutoObservable(this);
@@ -34,6 +38,50 @@ export class LotteryPublicStore {
     } finally {
       runInAction(() => {
         this.isLoading = false;
+      });
+    }
+  }
+
+  async fetchLotteryDetails(id: number) {
+    this.isLoading = true;
+    this.error = null;
+    
+    try {
+      const response = await axios.get(`/api/lottery/detail/${id}`);
+      runInAction(() => {
+        this.currentLottery = response.data;
+      });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      runInAction(() => {
+        this.error = error.response?.data?.detail || 'Ошибка загрузки лотереи';
+      });
+    } finally {
+      runInAction(() => {
+        this.isLoading = false;
+      });
+    }
+  }
+
+  async buyTicket(lotteryId: number, ticketCount: number = 1) {
+    this.buyLoading = true;
+    this.buyError = null;
+    
+    try {
+      await axios.post('/api/ticket/buy', { 
+        lottery_id: lotteryId,
+        count: ticketCount
+      });
+      return true;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      runInAction(() => {
+        this.buyError = error.response?.data?.detail || 'Ошибка покупки билета';
+      });
+      return false;
+    } finally {
+      runInAction(() => {
+        this.buyLoading = false;
       });
     }
   }

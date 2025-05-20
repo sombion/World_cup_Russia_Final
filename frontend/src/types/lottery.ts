@@ -20,3 +20,15 @@ export interface LotteriesFilter {
   title?: string;
   startDate?: string;
 }
+
+export interface LotteryDetails {
+    id: number;
+    title: string;
+    description: string;
+    accumulation: number | null;
+    time_end: string;
+    price_ticket: number;
+    time_start: string;
+    win_time: string;
+    ticket_count: number;
+}
