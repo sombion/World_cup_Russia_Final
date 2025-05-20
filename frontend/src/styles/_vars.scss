@@ -4,9 +4,15 @@ $primary-color: #212121;
 $secondary-color: #f2f2f2;
 $accent-color: #8bc34a;
 $error-color: #ff4e4e;
-$text-color: #212121;
-$background-color: #ffffff;
-
+$text-color: #ffffff;
+// $background-color: #ffffff;
+$background-color:linear-gradient(
+    135deg,
+    #1e1f29,
+    #2c2d3e,
+    #3f3f55,
+    #4e4f66
+);
 // Градиенты
 $primary-gradient: linear-gradient(145deg, #6ba5ff, #3e72cc);
 
