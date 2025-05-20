@@ -6,7 +6,7 @@ from backend.statistics.dao import StatisticsDAO
 
 
 async def play_cube_game(user_id: int):
-    profile = (await ProfileDAO.find_by_user_id(user_id))[0]
+    profile = (await ProfileDAO.find_by_id(user_id))[0]
 
     chances_money_not_skills = [16, 16, 16, 16, 16, 16]
     drop_rate_gt_3 = profile['drop_rate_gt_3']

@@ -28,6 +28,6 @@ async def api_create_lottery(lottery_data: SCreateLottery, current_user: Users =
 async def api_all_lottery():
     return {"lotterys": await LotteryDAO.all_future()}
 
-@router.get("/check")
-async def api_check_and_finish_lottery():
-    return await check_and_finish_lottery()
+@router.get("/end_all")
+async def api_end_all():
+    return await end_all()

@@ -2,13 +2,13 @@
     {
         "title_name": "Бросок кубика",
         "price": 50,
-        "url": "/diceroll",
+        "url": "/games_2/diceroll",
         "img": "diceroll"
     },
     {
         "title_name": "Бросок Судьбы",
         "price": 50,
-        "url": "/achieving-the-goal",
+        "url": "/games_2/achieving-the-goal",
         "img": "achieving-the-goal"
     }
 ]

@@ -78,3 +78,10 @@ class LotteryDAO(BaseDAO):
             )
             result = await session.execute(query)
             return result.scalars().all()
+
+    @classmethod
+    async def update_win_time(cls, id: int, win_time):
+        async with async_session_maker() as session:
+            stmt = update(cls.model).where(cls.model.id==id).values(win_time=win_time)
+            await session.execute(stmt)
+            await session.commit()
