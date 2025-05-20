@@ -67,12 +67,34 @@ class LotteryDAO(BaseDAO):
             return result.scalar()
 
     @classmethod
-    async def all_future(cls, date_now):
+    async def all_future(cls, date_now: datetime):
         async with async_session_maker() as session:
             query = (
-                select(cls.model, func.count(Ticket.users_id))
+                select(
+                    cls.model.id,
+                    cls.model.title,
+                    cls.model.description,
+                    cls.model.max_count_ticket,
+                    cls.model.count_ticket_win,
+                    cls.model.price_ticket,
+                    cls.model.accumulation,
+                    cls.model.time_start,
+                    cls.model.time_end,
+                    func.count(Ticket.users_id)
+                )
                 .join(Ticket, cls.model.id == Ticket.lottery_id)
-                .where(cls.model.time_start>date_now)
+                .where(date_now < cls.model.time_end)
+                .group_by(
+                    cls.model.id,
+                    cls.model.title,
+                    cls.model.description,
+                    cls.model.max_count_ticket,
+                    cls.model.count_ticket_win,
+                    cls.model.price_ticket,
+                    cls.model.accumulation,
+                    cls.model.time_start,
+                    cls.model.time_end,
+                )
             )
             result = await session.execute(query)
             return result.mappings().all()

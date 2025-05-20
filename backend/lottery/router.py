@@ -23,9 +23,9 @@ async def api_create_lottery(lottery_data: SCreateLottery, current_user: Users =
         lottery_data.description,
         lottery_data.max_count_ticket,
         lottery_data.count_ticket_win,
-        lottery_data.time_start.replace(tzinfo=None),
+        lottery_data.time_start.replace(second=0, microsecond=0, tzinfo=None)
     )
 
 @router.get("/all")
 async def api_all_lottery():
-    return LotteryDAO.all_future(datetime.now())
+    return await LotteryDAO.all_future(datetime.now().replace(tzinfo=None))
