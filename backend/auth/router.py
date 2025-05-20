@@ -6,14 +6,14 @@ from backend.auth.schemas import SEdinUsername, SEditPassword, SUserAuth, SUserR
 from backend.auth.service import edit_password, login_user, register_user
 
 router = APIRouter(
-    prefix='/api/auth',
+    prefix='/auth',
     tags=['Авторизация']
 )
 
 
 @router.get("/me", description="Просмотр данных о текущем пользователе")
 async def api_get_me(current_user: Users = Depends(get_current_user)) -> dict:
-    return await UsersDAO.detail_user(current_user.id)
+    return await UsersDAO.find_by_id(current_user.id)
 
 @router.post("/register", description="Регистрация")
 async def api_register_user(user_data: SUserRegister) -> dict:
@@ -21,9 +21,7 @@ async def api_register_user(user_data: SUserRegister) -> dict:
         username=user_data.username,
         login=user_data.login,
         password=user_data.password,
-        age=user_data.age,
-        region_id=user_data.region_id,
-        role=user_data.role
+        is_admin=user_data.is_admin
     )
 
 @router.post("/login", description="Авторизация")

@@ -4,7 +4,6 @@ from fastapi import Depends, Request
 from jose import JWTError, jwt
 
 from backend.auth.models import Users
-from backend.auth.models import UserRole
 from backend.config import settings
 from backend.exceptions import (IncorrectTokenFormatException, PermissionDeniedException,
                             TokenAbsentException, TokenExpiredException,

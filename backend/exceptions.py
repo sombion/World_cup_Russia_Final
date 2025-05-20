@@ -107,3 +107,32 @@ class InvalidAgeInApplicationError(PCException):
 class CompetitionNotFoundError(PCException):
     status_code = status.HTTP_404_NOT_FOUND
     detail = "Соревнование не найдено"
+
+class LotteryNotFoundException(PCException):
+    status_code = status.HTTP_404_NOT_FOUND
+    detail = "Лоттерея не найдена"
+
+class MaxUsersInLotteryException(PCException):
+    status_code = status.HTTP_409_CONFLICT
+    detail = "В лоттереи уже учавствует максимально кол-во участников"
+
+class InvalidCoinsAmountException(PCException):
+    status_code = status.HTTP_400_BAD_REQUEST
+    detail = "Указано некорректное количество монет"
+
+class UnableToWithdrawCoinsException(PCException):
+    status_code = status.HTTP_400_BAD_REQUEST
+    detail = "Невозможно списать монеты"
+
+class TicketNotFoundException(PCException):
+    status_code = status.HTTP_404_NOT_FOUND
+    detail = "Билет не найден"
+
+
+class GameNotFinishedException(PCException):
+    status_code = status.HTTP_400_BAD_REQUEST
+    detail = "Игра ещё не окончена"
+
+class TicketAlreadyRedeemedException(PCException):
+    status_code = status.HTTP_409_CONFLICT
+    detail = "Вы уже обменяли билет"

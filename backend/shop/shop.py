@@ -8,7 +8,7 @@ class Shop:
 
 	async def shop_create_and_list(self, user_id: int):
 		time = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
-		id_profile = await ProfileDAO.find_id_from_id(user_id)
+		id_profile = await ProfileDAO.find_id_from_user_id(user_id)
 
 		new_shop = await BuyShopDAO.find_shop_by_date(id_profile, time)
 		if len(new_shop) < 6:
@@ -33,7 +33,7 @@ class Shop:
 
 		time = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
 		profile = (await ProfileDAO.find_by_id(user_id))[0]
-		id_profile = await ProfileDAO.find_id_from_id(user_id)
+		id_profile = await ProfileDAO.find_id_from_user_id(user_id)
 		one_item = await BuyShopDAO.find_item_in_shop(id_profile, time, id_item)
 		item = await InfoShopDAO.find_by_id(id_item)
 		print(time)
