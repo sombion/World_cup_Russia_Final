@@ -1,18 +1,22 @@
-// src/components/LotteryCard/LotteryCard.module.scss
+@use 'sass:color';
+@use '../../styles/vars' as *;
+@use '../../styles/global' as *;
+
 .card {
-  border: 1px solid #eaeaea;
-  border-radius: 8px;
-  padding: 16px;
-  background: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s, box-shadow 0.2s;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  border-radius: $border-radius;
+  padding: 1.5rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
   }
 }
 
@@ -20,26 +24,26 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
 }
 
 .title {
-  font-size: 18px;
+  font-size: 1.2rem;
   font-weight: 600;
   margin: 0;
-  color: #333;
+  color: #ffffff;
 }
 
 .price {
-  font-size: 20px;
+  font-size: 1.3rem;
   font-weight: 700;
   color: #2ecc71;
   white-space: nowrap;
 }
 
 .description {
-  font-size: 14px;
-  color: #666;
+  font-size: 0.9rem;
+  color: #cccccc;
   margin: 0;
   flex-grow: 1;
 }
@@ -47,8 +51,8 @@
 .details {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  font-size: 14px;
+  gap: 0.5rem;
+  font-size: 0.9rem;
 }
 
 .detailItem {
@@ -57,39 +61,40 @@
 }
 
 .detailLabel {
-  color: #777;
-  margin-right: 8px;
+  color: #bbbbbb;
 }
 
 .accumulation {
-  color: #e74c3c;
+  color: #ff6b6b;
   font-weight: 600;
 }
 
 .buyButton {
-  padding: 10px 16px;
-  background-color: #3498db;
-  color: white;
+  padding: 0.75rem 1.25rem;
+  background: linear-gradient(135deg, #7b3aff, #6a29ee);
+  color: #ffffff;
   border: none;
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: 500;
+  border-radius: $border-radius;
+  font-size: 0.95rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s;
-  margin-top: 8px;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  margin-top: 0.5rem;
+  box-shadow: 0 4px 14px rgba(123, 58, 255, 0.4);
 
   &:hover {
-    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(123, 58, 255, 0.5);
   }
 
   &:disabled {
-    background-color: #95a5a6;
+    opacity: 0.5;
     cursor: not-allowed;
   }
 }
 
 .error {
-  color: #e74c3c;
-  font-size: 13px;
-  margin-top: 4px;
+  color: $error-color;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
 }
