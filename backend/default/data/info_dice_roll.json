@@ -1,0 +1,73 @@
+[
+    {
+        "lvl_dice_roll": 1,
+        "xp": 2,
+        "money": 0, 
+        "ruby": 2,
+        "cube": 0
+    },
+    {
+        "lvl_dice_roll": 2,
+        "xp": 4,
+        "money": 0, 
+        "ruby": 4,
+        "cube": 0
+    },
+    {
+        "lvl_dice_roll": 3,
+        "xp": 6,
+        "money": 0, 
+        "ruby": 6,
+        "cube": 0
+    },
+    {
+        "lvl_dice_roll": 4,
+        "xp": 8,
+        "money": 0, 
+        "ruby": 8,
+        "cube": 1
+    },
+    {
+        "lvl_dice_roll": 5,
+        "xp": 10,
+        "money": 0, 
+        "ruby": 10,
+        "cube": 1
+    },
+    {
+        "lvl_dice_roll": 6,
+        "xp": 12,
+        "money": 0, 
+        "ruby": 12,
+        "cube": 2
+    },
+    {
+        "lvl_dice_roll": 7,
+        "xp": 14,
+        "money": 0, 
+        "ruby": 14,
+        "cube": 2
+    },
+    {
+        "lvl_dice_roll": 8,
+        "xp": 16,
+        "money": 0, 
+        "ruby": 16,
+        "cube": 3
+    },
+    {
+        "lvl_dice_roll": 9,
+        "xp": 18,
+        "money": 0, 
+        "ruby": 18,
+        "cube": 4
+    },
+    {
+        "lvl_dice_roll": 10,
+        "xp": 20,
+        "money": 0, 
+        "ruby": 20,
+        "cube": 5
+    }
+]
+ 

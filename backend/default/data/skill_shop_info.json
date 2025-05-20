@@ -1,0 +1,163 @@
+[
+    {
+        "skill_lvl": 1,
+        "skill_name": "drop_rate_gt_3",
+        "ru_skill_name": "Шанс выпадения больше 3",
+        "skill_value": 1,
+        "ruby_price": 30
+    },
+    {
+        "skill_lvl": 2,
+        "skill_name": "drop_rate_gt_3",
+        "ru_skill_name": "Шанс выпадения больше 3",
+        "skill_value": 2,
+        "ruby_price": 40
+    },
+    {
+        "skill_lvl": 3,
+        "skill_name": "drop_rate_gt_3",
+        "ru_skill_name": "Шанс выпадения больше 3",
+        "skill_value": 3,
+        "ruby_price": 50
+    },
+    {
+        "skill_lvl": 4,
+        "skill_name": "drop_rate_gt_3",
+        "ru_skill_name": "Шанс выпадения больше 3",
+        "skill_value": 4,
+        "ruby_price": 60
+    },
+    {
+        "skill_lvl": 5,
+        "skill_name": "drop_rate_gt_3",
+        "ru_skill_name": "Шанс выпадения больше 3",
+        "skill_value": 5,
+        "ruby_price": 70
+    },
+    {
+        "skill_lvl": 1,
+        "skill_name": "no_die_spend_chance",
+        "ru_skill_name": "Шанс не потратить кубик",
+        "skill_value": 1,
+        "ruby_price": 50
+    },
+    {
+        "skill_lvl": 2,
+        "skill_name": "no_die_spend_chance",
+        "ru_skill_name": "Шанс не потратить кубик",
+        "skill_value": 2,
+        "ruby_price": 55
+    },
+    {
+        "skill_lvl": 3,
+        "skill_name": "no_die_spend_chance",
+        "ru_skill_name": "Шанс не потратить кубик",
+        "skill_value": 3,
+        "ruby_price": 60
+    },
+    {
+        "skill_lvl": 4,
+        "skill_name": "no_die_spend_chance",
+        "ru_skill_name": "Шанс не потратить кубик",
+        "skill_value": 4,
+        "ruby_price": 65
+    },
+    {
+        "skill_lvl": 5,
+        "skill_name": "no_die_spend_chance",
+        "ru_skill_name": "Шанс не потратить кубик",
+        "skill_value": 5,
+        "ruby_price": 70
+    },
+    {
+        "skill_lvl": 1,
+        "skill_name": "double_money_drop_chance",
+        "ru_skill_name": "Шанс получить х2 монет за выпадение",
+        "skill_value": 1,
+        "ruby_price": 30
+    },
+    {
+        "skill_lvl": 2,
+        "skill_name": "double_money_drop_chance",
+        "ru_skill_name": "Шанс получить х2 монет за выпадение",
+        "skill_value": 2,
+        "ruby_price": 35
+    },
+    {
+        "skill_lvl": 3,
+        "skill_name": "double_money_drop_chance",
+        "ru_skill_name": "Шанс получить х2 монет за выпадение",
+        "skill_value": 3,
+        "ruby_price": 40
+    },
+    {
+        "skill_lvl": 4,
+        "skill_name": "double_money_drop_chance",
+        "ru_skill_name": "Шанс получить х2 монет за выпадение",
+        "skill_value": 4,
+        "ruby_price": 45
+    },
+    {
+        "skill_lvl": 5,
+        "skill_name": "double_money_drop_chance",
+        "ru_skill_name": "Шанс получить х2 монет за выпадение",
+        "skill_value": 5,
+        "ruby_price": 50
+    },
+    {
+        "skill_lvl": 1,
+        "skill_name": "ruby_drop_chance",
+        "ru_skill_name": "Шанс выпадения рубина",
+        "skill_value": 1,
+        "ruby_price": 30
+    },
+    {
+        "skill_lvl": 2,
+        "skill_name": "ruby_drop_chance",
+        "ru_skill_name": "Шанс выпадения рубина",
+        "skill_value": 2,
+        "ruby_price": 35
+    },
+    {
+        "skill_lvl": 3,
+        "skill_name": "ruby_drop_chance",
+        "ru_skill_name": "Шанс выпадения рубина",
+        "skill_value": 3,
+        "ruby_price": 40
+    },
+    {
+        "skill_lvl": 4,
+        "skill_name": "ruby_drop_chance",
+        "ru_skill_name": "Шанс выпадения рубина",
+        "skill_value":4,
+        "ruby_price": 45
+    },
+    {
+        "skill_lvl": 5,
+        "skill_name": "ruby_drop_chance",
+        "ru_skill_name": "Шанс выпадения рубина",
+        "skill_value": 5,
+        "ruby_price": 50
+    },
+    {
+        "skill_lvl": 1,
+        "skill_name": "afk_dice",
+        "ru_skill_name": "Количество кубиков при AFK",
+        "skill_value": 1,
+        "ruby_price": 100
+    },
+    {
+        "skill_lvl": 2,
+        "skill_name": "afk_dice",
+        "ru_skill_name": "Количество кубиков при AFK",
+        "skill_value": 2,
+        "ruby_price": 100
+    },
+    {
+        "skill_lvl": 3,
+        "skill_name": "afk_dice",
+        "ru_skill_name": "Количество кубиков при AFK",
+        "skill_value": 3,
+        "ruby_price": 100
+    }
+]
