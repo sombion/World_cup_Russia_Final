@@ -1,0 +1,45 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #f0f0f3;
+  box-shadow: 6px 6px 12px #d1d9e6, -6px -6px 12px #ffffff;
+  border-radius: 20px;
+}
+
+.logo a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+}
+
+.menu {
+  display: flex;
+  gap: 1.5rem;
+
+  a {
+    color: #555;
+    text-decoration: none;
+    font-weight: 500;
+
+    &:hover {
+      color: #000;
+    }
+  }
+}
+
+.auth .button {
+  background: #e0e0e0;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  box-shadow: inset 2px 2px 4px #d1d9e6, inset -2px -2px 4px #ffffff;
+  font-weight: 500;
+  color: #333;
+  text-decoration: none;
+
+  &:hover {
+    color: #000;
+  }
+}

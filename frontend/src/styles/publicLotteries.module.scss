@@ -1,0 +1,72 @@
+// src/styles/publicLotteries.scss
+.public-lotteries-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+
+  h1 {
+    text-align: center;
+    color: #e30613;
+    margin-bottom: 30px;
+  }
+
+  .filters {
+    /* Аналогично админ-версии, но без админских элементов */
+  }
+
+  .error-message, .loading {
+    /* Аналогично админ-версии */
+  }
+
+  .lotteries-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+
+    .lottery-card {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+
+      h3 {
+        margin-top: 0;
+        color: #e30613;
+      }
+
+      .description {
+        color: #666;
+        flex-grow: 1;
+      }
+
+      .details {
+        margin: 15px 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+
+        div {
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+
+      .participate-btn {
+        align-self: flex-end;
+        background: #4CAF50;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: auto;
+
+        &:hover {
+          background: darken(#4CAF50, 10%);
+        }
+      }
+    }
+  }
+}
