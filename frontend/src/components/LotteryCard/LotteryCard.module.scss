@@ -1,0 +1,95 @@
+// src/components/LotteryCard/LotteryCard.module.scss
+.card {
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  padding: 16px;
+  background: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  color: #333;
+}
+
+.price {
+  font-size: 20px;
+  font-weight: 700;
+  color: #2ecc71;
+  white-space: nowrap;
+}
+
+.description {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.detailItem {
+  display: flex;
+  justify-content: space-between;
+}
+
+.detailLabel {
+  color: #777;
+  margin-right: 8px;
+}
+
+.accumulation {
+  color: #e74c3c;
+  font-weight: 600;
+}
+
+.buyButton {
+  padding: 10px 16px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 8px;
+
+  &:hover {
+    background-color: #2980b9;
+  }
+
+  &:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+  }
+}
+
+.error {
+  color: #e74c3c;
+  font-size: 13px;
+  margin-top: 4px;
+}
