@@ -1,0 +1,123 @@
+[
+    {
+        "lvl": 1,
+        "need_to": 0
+    },
+    {
+        "lvl": 2,
+        "need_to": 4
+    },
+    {
+        "lvl": 3,
+        "need_to": 8
+    },
+    {
+        "lvl": 4,
+        "need_to": 16
+    },
+    {
+        "lvl": 5,
+        "need_to": 20
+    },
+    {
+        "lvl": 6,
+        "need_to": 30
+    },
+    {
+        "lvl": 7,
+        "need_to": 40
+    },
+    {
+        "lvl": 8,
+        "need_to": 50
+    },
+    {
+        "lvl": 9,
+        "need_to": 60
+    },
+    {
+        "lvl": 10,
+        "need_to": 70
+    },
+    {
+        "lvl": 11,
+        "need_to": 80
+    },
+    {
+        "lvl": 12,
+        "need_to": 90
+    },
+    {
+        "lvl": 13,
+        "need_to": 100
+    },
+    {
+        "lvl": 14,
+        "need_to": 120
+    },
+    {
+        "lvl": 15,
+        "need_to": 140
+    },
+    {
+        "lvl": 16,
+        "need_to": 160
+    },
+    {
+        "lvl": 17,
+        "need_to": 180
+    },
+    {
+        "lvl": 18,
+        "need_to": 200
+    },
+    {
+        "lvl": 19,
+        "need_to": 220
+    },
+    {
+        "lvl": 20,
+        "need_to": 240
+    },
+    {
+        "lvl": 21,
+        "need_to": 260
+    },
+    {
+        "lvl": 22,
+        "need_to": 280
+    },
+    {
+        "lvl": 23,
+        "need_to": 300
+    },
+    {
+        "lvl": 24,
+        "need_to": 320
+    },
+    {
+        "lvl": 25,
+        "need_to": 340
+    },
+    {
+        "lvl": 26,
+        "need_to": 360
+    },
+    {
+        "lvl": 27,
+        "need_to": 380
+    },
+    {
+        "lvl": 28,
+        "need_to": 400
+    },
+    {
+        "lvl": 29,
+        "need_to": 420
+    },
+    {
+        "lvl": 30,
+        "need_to": 440
+    }
+
+]
