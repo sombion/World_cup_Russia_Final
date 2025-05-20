@@ -5,7 +5,7 @@ from backend.auth.dependencies import get_admin_user
 from backend.auth.models import Users
 from backend.lottery.dao import LotteryDAO
 from backend.lottery.schemas import SCreateLottery
-from backend.lottery.service import check_and_finish_lottery, create_lottery, detail_lottery
+from backend.lottery.service import end_all, create_lottery, detail_lottery
 
 router = APIRouter(
     prefix="/api/lottery",
