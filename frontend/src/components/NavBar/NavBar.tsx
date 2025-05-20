@@ -2,7 +2,7 @@
 import { observer } from "mobx-react-lite";
 import { Link, useNavigate } from "react-router-dom";
 import { authStore } from "../../stores/authStore";
-import "./NavBar.module.scss";
+import styles from "./NavBar.module.scss";
 
 export const Navbar = observer(() => {
   const navigate = useNavigate();
@@ -11,16 +11,17 @@ export const Navbar = observer(() => {
     authStore.logout();
     navigate("/login"); 
   };
+const GAME_BASE_URL = import.meta.env.VITE_GAME_BASE_URL || 'http://127.0.0.1:8000';
 
-   const launchGame2 = () => {
-    window.open(`http://127.0.0.1:8000/games_2/`, '_blank');
-  };
+const launchGame2 = () => {
+  window.open(`${GAME_BASE_URL}/games_2/`, '_blank');
+};
 
   if (authStore.isLoading) return <div>Загрузка...</div>;
 
   return (
-    <nav className="navbar">
-      <div className="navbar-left">
+    <nav className={styles["navbar"]}>
+      <div className={styles["navbar-left"]}>
         {authStore.isAdmin ? (
           <> 
             <Link to="/admin/lotteries/create">Создать лотерею</Link>
@@ -35,23 +36,23 @@ export const Navbar = observer(() => {
       </div>
 
       {authStore.isAuthenticated ? (
-        <div className="navbar-right">
-          <span className="user-info">
+        <div className={styles["navbar-right"]}>
+          <span className={styles["user-info"]}>
             {authStore.user?.login}
             {authStore.isAdmin && " (Admin)"}
           </span>
-          <button onClick={launchGame2} className="game-button">
+          <button onClick={launchGame2} className={styles["logout-button"]}>
           Игра 2
         </button>
           {!authStore.isAdmin && (
-            <span className="user-money">Баланс: {authStore.user?.money} ₽</span>
+            <span className={styles["user-money"]}>Баланс: {authStore.user?.money} ₽</span>
           )}
-          <button onClick={handleLogout} className="logout-button">
+          <button onClick={handleLogout} className={styles["logout-button"]}>
             Выйти
           </button>
         </div>
       ) : (
-        <Link to="/login" className="login-button">
+        <Link to="/login" className={styles["logout-button"]}>
           Войти
         </Link>
       )}
