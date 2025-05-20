@@ -5,7 +5,7 @@ from backend.profile.dao import ProfileDAO
 from backend.skillshop.dao import SkillShopDAO
 from backend.auth.dependencies import get_current_user
 from backend.auth.models import Users
-from backend.shop.router import SBuyModel
+from backend.skillshop.schemas import SBuyModel
 
 router = APIRouter(
 	prefix="/api/info-shop",

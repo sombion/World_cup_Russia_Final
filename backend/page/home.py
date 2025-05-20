@@ -12,7 +12,7 @@ router = APIRouter(
     tags={"Главная страница"}
 )
 
-templates = Jinja2Templates(directory="app/templates")
+templates = Jinja2Templates(directory="backend/templates")
 
 @router.get("/")
 async def index(request: Request, current_user: Users = Depends(get_current_user)):

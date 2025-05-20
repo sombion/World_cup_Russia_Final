@@ -8,7 +8,7 @@ from backend.auth.models import Users
 
 router = APIRouter()
 
-templates = Jinja2Templates(directory="app/templates")
+templates = Jinja2Templates(directory="backend/templates")
 
 
 @router.get("/skills")

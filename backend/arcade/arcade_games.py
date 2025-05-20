@@ -10,8 +10,8 @@ class ArcadeGamesBase:
 	async def create_noviciate(cls, profile, target_number: int = None):
 		info_games = await cls.model_dao.check_games(profile['id'], cls.name_arcade)
 		statistics_data = StatisticsDAO.find_by_id(profile['statistics_id'])
-		config = AdminInfoDAO.find_by_id(1)
-		prise = config.price_mini_games
+		config = (await AdminInfoDAO.find_all())[0]
+		prise = config['price_mini_games']
 		if info_games == []:
 			statistics_id = profile['statistics_id']
 			if statistics_data.money - prise < 0:

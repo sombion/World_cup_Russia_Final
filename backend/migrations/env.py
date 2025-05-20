@@ -17,7 +17,6 @@ from backend.diceroll.models import InfoDicePoll
 from backend.info.models import InfoXP
 from backend.lottery.models import Lottery
 from backend.profile.models import Profile
-from backend.shop.models import ShopItem
 from backend.skills.models import Skills
 from backend.skillshop.models import ShopSkillsInfo
 from backend.statistics.models import Statistics

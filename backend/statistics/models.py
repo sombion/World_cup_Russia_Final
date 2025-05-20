@@ -12,4 +12,3 @@ class Statistics(Base):
     cube: Mapped[int]
     ruby: Mapped[int]
     money: Mapped[int]
-    ticket: Mapped[int]

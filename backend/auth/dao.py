@@ -3,6 +3,9 @@ from backend.auth.models import Users
 from backend.database import async_session_maker
 from sqlalchemy import insert, select, update
 
+from backend.profile.models import Profile
+from backend.statistics.models import Statistics
+
 
 class UsersDAO(BaseDAO):
     model = Users
@@ -32,3 +35,14 @@ class UsersDAO(BaseDAO):
             stmt = update(cls.model).where(cls.model.id==user_id).values(**filter)
             await session.execute(stmt)
             await session.commit()
+
+    @classmethod
+    async def detail(cls, user_id: int):
+        async with async_session_maker() as session:
+            query = (
+                select(cls.model.__tablename__.column)
+                .join(Profile, cls.model.id == Profile.user_id)
+                .join(Statistics, Statistics.id == Profile.user_id)
+            )
+            result = await session.execute(query)
+            return result.mappings().all()

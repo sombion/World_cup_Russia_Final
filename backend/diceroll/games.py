@@ -1,17 +1,19 @@
 import random
 
+from backend.admin.dao import AdminInfoDAO
 from backend.diceroll.dao import DiceRollDAO, InfoDicePollDAO
 from backend.statistics.dao import StatisticsDAO
 
 
 async def create_noviciate(profile):
     info_games = await DiceRollDAO.check_games(profile['id'])
-    prise = 1
+    config = (await AdminInfoDAO.find_all())[0]
+    prise = config['price_mini_games']
     if info_games == []:
         statistics_id = profile['statistics_id']
-        ticket = profile['ticket']
-        if ticket - prise < 0:
-            return {"status": 402, "error": "Недостаточно билетов"}
+        money = profile['money']
+        if money - prise < 0:
+            return {"status": 402, "error": "Недостаточно монет"}
         else:
             await StatisticsDAO.edit_ticket(statistics_id, prise)
         result = await DiceRollDAO.create_model(profile['id'])

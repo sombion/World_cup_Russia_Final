@@ -11,8 +11,6 @@
 
 	{% for arcade in info_arcade %}
 	<div class="event {{arcade.img}}" onclick="showConfirmationModal('{{arcade.url}}')">
-		<div class="event-title">{{ arcade.title_name }}</div>
-		<div class="event-timer">{{ arcade.time_end_now }}</div>
 		<div class="event-info">
 			{% if info_dice_roll != [] and arcade.title_name == 'Бросок кубика' %}
 			<div class="wins-losses">Победы: {{ info_dice_roll.win }} <a style="color: white">/</a> <a style="color: red">Поражения: {{ info_dice_roll.lose }}</a></div>

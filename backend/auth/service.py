@@ -3,6 +3,9 @@ from backend.auth.auth import authenticate_user, create_access_token, get_passwo
 from backend.auth.dao import UsersDAO
 from backend.auth.models import Users
 from backend.exceptions import IncorrectPasswordException, UserAlreadyExistsException
+from backend.profile.dao import ProfileDAO
+from backend.skills.dao import SkillsDAO
+from backend.statistics.dao import StatisticsDAO
 
 
 async def register_user(
@@ -21,6 +24,9 @@ async def register_user(
         hash_password=hash_password,
         is_admin=is_admin
     )
+    statistics_data = await StatisticsDAO.add(0, 1, 0, 0, 45)
+    skills_data = await SkillsDAO.add(0, 0, 0, 0, 0, 1)
+    await ProfileDAO.add(user_id, statistics_data.id, skills_data.id)
     return {'detail': 'Вы успешно зарегистрированы!'}
 
 async def login_user(login: str, password: str):

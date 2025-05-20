@@ -1,15 +1,15 @@
 from fastapi import APIRouter, Depends, Request
 from fastapi.templating import Jinja2Templates
 import random
-from app.achieving_the_goal.dao import AchievingTheGoalDAO
-from app.achieving_the_goal.games import GamesAchievingTheGoal
-from app.profile.dao import ProfileDAO
+from backend.achieving_the_goal.dao import AchievingTheGoalDAO
+from backend.achieving_the_goal.games import GamesAchievingTheGoal
+from backend.profile.dao import ProfileDAO
 from backend.auth.dependencies import get_current_user
 from backend.auth.models import Users
 
 router = APIRouter()
 
-templates = Jinja2Templates(directory="app/templates")
+templates = Jinja2Templates(directory="backend/templates")
 
 
 @router.get("/achieving-the-goal")

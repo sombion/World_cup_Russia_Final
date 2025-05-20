@@ -1,5 +1,6 @@
-from sqlalchemy import select, update
+from sqlalchemy import insert, select, update
 
+from backend.auth.models import Users
 from backend.dao.base import BaseDAO
 from backend.database import async_session_maker
 from backend.profile.models import Profile
@@ -11,15 +12,34 @@ class ProfileDAO(BaseDAO):
     model = Profile
 
     @classmethod
+    async def add(
+        cls,
+        user_id: int,
+        statistics_id: int,
+        skills_id: int,
+    ):
+        async with async_session_maker() as session:
+            stmt = insert(cls.model).values(
+                user_id=user_id,
+                statistics_id=statistics_id,
+                skills_id=skills_id,
+            )
+            result = await session.execute(stmt)
+            await session.commit()
+            return result.scalar()
+
+    @classmethod
     async def find_by_id(cls, user_id: int):
         async with async_session_maker() as session:
             query = (
                 select(
                     cls.model.__table__.columns,
                     Skills.__table__.columns,
-                    Statistics.__table__.columns
+                    Statistics.__table__.columns,
+                    Users.__table__.columns
                 ).join(Skills, cls.model.skills_id == Skills.id)
                 .join(Statistics, cls.model.statistics_id == Statistics.id)
+                .join(Users, cls.model.user_id == Users.id)
                 .filter(Profile.user_id==user_id))
             result = await session.execute(query)
             return result.mappings().all()

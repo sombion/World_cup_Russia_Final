@@ -11,6 +11,20 @@ class StatisticsDAO(BaseDAO):
     model = Statistics
 
     @classmethod
+    async def add(cls, xp: int, lvl: int, cube: int, ruby: int, money: int):
+        async with async_session_maker() as session:
+            stmt = insert(cls.model).values(
+                xp=xp,
+                lvl=lvl,
+                cube=cube,
+                ruby=ruby,
+                money=money
+            ).returning(cls.model)
+            result = await session.execute(stmt)
+            await session.commit()
+            return result.scalar()
+
+    @classmethod
     async def edit_dice_roll_db(
             cls,
             id_statistics: int,

@@ -23,8 +23,6 @@ class InfoArcade(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     title_name: Mapped[str]
-    time_start: Mapped[datetime]
-    time_end: Mapped[datetime]
     price: Mapped[int]
     url: Mapped[str]
     img: Mapped[str]

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/static/css/styles.css">
     <link id="favicon" rel="icon" type="image/x-icon" href="/static/images/cube.png">
     {% block head %}
-    
+
     {% endblock head %}
 </head>
 <body>
@@ -20,21 +20,19 @@
                 <div class="stat"><img src="../static/images/coin.png" alt="Монеты"><span id="profile-money">{{profile.money}}</span></div>
             </div>
         </div>
-        
+
 		{% block content %}
-		
+
 		{% endblock content %}
-	
-    
+
+
         {% block end %}
-    
+
         {% endblock end %}
 
 		<div class="navigation">
-            <a href="/shop" class="nav-button"><div class="nav-button"><img src="../static/images/shop.png" alt="Shop"></div></a>
             <a href="/skills" class="nav-button"><div class="nav-button"><img src="../static/images/statistic.png" alt="Statistic"></div></a>
             <a href="/" class="nav-button"><div class="nav-button"><img src="../static/images/home.png" alt="Home"></div></a>
-            <a href="/clan" class="nav-button"><div class="nav-button"><img src="../static/images/clan.png" alt="GamesRandom"></div></a>
             <a href="/arcade" class="nav-button"><div class="nav-button"><img src="../static/images/modes.png" alt="Modes"></div></a>
 		</div>
 	</div>
