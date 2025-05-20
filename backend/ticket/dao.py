@@ -17,6 +17,12 @@ class TicketDAO(BaseDAO):
             await session.commit()
             return result.scalar()
 
+    @classmethod
+    async def last_ticket(cls):
+        async with async_session_maker() as session:
+            query = 
+            result = await session.execute(query)
+            return result.mappings().all()
 
     @classmethod
     async def count(cls, lottery_id: int):

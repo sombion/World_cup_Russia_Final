@@ -15,8 +15,6 @@ class LotteryDAO(BaseDAO):
         cls,
         title: str,
         description: str,
-        max_count_ticket: int,
-        count_ticket_win: int,
         price_ticket: int,
         time_start: datetime,
         time_end: datetime,
@@ -25,8 +23,6 @@ class LotteryDAO(BaseDAO):
             stmt = insert(cls.model).values(
                 title=title,
                 description=description,
-                max_count_ticket=max_count_ticket,
-                count_ticket_win=count_ticket_win,
                 price_ticket=price_ticket,
                 time_start=time_start,
                 time_end=time_end,
