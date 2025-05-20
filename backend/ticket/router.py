@@ -7,7 +7,7 @@ from backend.ticket.schemas import SBuyTicket, STradeLoseTicker
 from backend.ticket.service import buy_ticket, trade_lose_ticket
 
 router = APIRouter(
-    prefix="/ticket",
+    prefix="/api/ticket",
     tags=["API ticket"]
 )
 

@@ -5,7 +5,7 @@ from backend.lottery.schemas import SCreateLottery
 from backend.lottery.service import create_lottery, detail_lottery
 
 router = APIRouter(
-    prefix="/lottery",
+    prefix="/api/lottery",
     tags=["API лоттереи"]
 )
 

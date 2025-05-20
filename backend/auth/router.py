@@ -6,7 +6,7 @@ from backend.auth.schemas import SEdinUsername, SEditPassword, SUserAuth, SUserR
 from backend.auth.service import edit_password, login_user, register_user
 
 router = APIRouter(
-    prefix='/auth',
+    prefix='/api/auth',
     tags=['Авторизация']
 )
 

@@ -15,6 +15,8 @@ async def create_lottery(
     admin_data = await AdminInfoDAO.config()
     price_ticket = admin_data.price_ticket
     minutes = admin_data.minutes
+    if count_ticket_win > max_count_ticket//2:
+        max_count_ticket = max_count_ticket // 2
     # Проверка на занятость времени
     lottery_date = await LotteryDAO.add(
         title=title,

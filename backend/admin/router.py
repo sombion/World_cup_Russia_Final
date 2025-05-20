@@ -6,7 +6,7 @@ from backend.auth.dependencies import get_admin_user
 from backend.auth.models import Users
 
 router = APIRouter(
-    prefix="/admin",
+    prefix="/api/admin",
     tags=["API admin"]
 )
 
