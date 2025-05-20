@@ -1,4 +1,3 @@
-// stores/authStore.ts
 import { makeAutoObservable } from 'mobx';
 import axios from 'axios';
 import type { IUser, IAuthResponse, IRegisterForm, ILoginForm } from '../types/auth';
